@@ -8,6 +8,7 @@
 
 #include <crypto/ripemd160.h>
 #include <crypto/sha256.h>
+#include <crypto/sha3.h>
 #include <prevector.h>
 #include <serialize.h>
 #include <uint256.h>
@@ -16,6 +17,30 @@
 #include <vector>
 
 typedef uint256 ChainCode;
+
+/** A hasher class for BSHA3's 256-bit hash (double SHA-3). */
+class CHash3 {
+private:
+    CSHA3 sha;
+public:
+    static const size_t OUTPUT_SIZE = CSHA3::OUTPUT_SIZE;
+
+    void Finalize(unsigned char hash[OUTPUT_SIZE]) {
+        unsigned char buf[CSHA3::OUTPUT_SIZE];
+        sha.Finalize(buf);
+        sha.Reset().Write(buf, CSHA3::OUTPUT_SIZE).Finalize(hash);
+    }
+
+    CHash3& Write(const unsigned char *data, size_t len) {
+        sha.Write(data, len);
+        return *this;
+    }
+
+    CHash3& Reset() {
+        sha.Reset();
+        return *this;
+    }
+};
 
 /** A hasher class for Bitcoin's 256-bit hash (double SHA-256). */
 class CHash256 {
@@ -36,6 +61,30 @@ public:
     }
 
     CHash256& Reset() {
+        sha.Reset();
+        return *this;
+    }
+};
+
+/** A hasher class for Bitcoin's 160-bit hash (SHA3-256 + RIPEMD-160). */
+class CHash360 {
+private:
+    CSHA3 sha;
+public:
+    static const size_t OUTPUT_SIZE = CRIPEMD160::OUTPUT_SIZE;
+
+    void Finalize(unsigned char hash[OUTPUT_SIZE]) {
+        unsigned char buf[CSHA3::OUTPUT_SIZE];
+        sha.Finalize(buf);
+        CRIPEMD160().Write(buf, CSHA3::OUTPUT_SIZE).Finalize(hash);
+    }
+
+    CHash360& Write(const unsigned char *data, size_t len) {
+        sha.Write(data, len);
+        return *this;
+    }
+
+    CHash360& Reset() {
         sha.Reset();
         return *this;
     }
@@ -71,8 +120,8 @@ inline uint256 Hash(const T1 pbegin, const T1 pend)
 {
     static const unsigned char pblank[1] = {};
     uint256 result;
-    CHash256().Write(pbegin == pend ? pblank : (const unsigned char*)&pbegin[0], (pend - pbegin) * sizeof(pbegin[0]))
-              .Finalize((unsigned char*)&result);
+    CHash3().Write(pbegin == pend ? pblank : (const unsigned char*)&pbegin[0], (pend - pbegin) * sizeof(pbegin[0]))
+            .Finalize((unsigned char*)&result);
     return result;
 }
 
@@ -82,41 +131,41 @@ inline uint256 Hash(const T1 p1begin, const T1 p1end,
                     const T2 p2begin, const T2 p2end) {
     static const unsigned char pblank[1] = {};
     uint256 result;
-    CHash256().Write(p1begin == p1end ? pblank : (const unsigned char*)&p1begin[0], (p1end - p1begin) * sizeof(p1begin[0]))
-              .Write(p2begin == p2end ? pblank : (const unsigned char*)&p2begin[0], (p2end - p2begin) * sizeof(p2begin[0]))
-              .Finalize((unsigned char*)&result);
+    CHash3().Write(p1begin == p1end ? pblank : (const unsigned char*)&p1begin[0], (p1end - p1begin) * sizeof(p1begin[0]))
+            .Write(p2begin == p2end ? pblank : (const unsigned char*)&p2begin[0], (p2end - p2begin) * sizeof(p2begin[0]))
+            .Finalize((unsigned char*)&result);
     return result;
 }
 
 /** Compute the 160-bit hash an object. */
 template<typename T1>
-inline uint160 Hash160(const T1 pbegin, const T1 pend)
+inline uint160 Hash360(const T1 pbegin, const T1 pend)
 {
     static unsigned char pblank[1] = {};
     uint160 result;
-    CHash160().Write(pbegin == pend ? pblank : (const unsigned char*)&pbegin[0], (pend - pbegin) * sizeof(pbegin[0]))
+    CHash360().Write(pbegin == pend ? pblank : (const unsigned char*)&pbegin[0], (pend - pbegin) * sizeof(pbegin[0]))
               .Finalize((unsigned char*)&result);
     return result;
 }
 
 /** Compute the 160-bit hash of a vector. */
-inline uint160 Hash160(const std::vector<unsigned char>& vch)
+inline uint160 Hash360(const std::vector<unsigned char>& vch)
 {
-    return Hash160(vch.begin(), vch.end());
+    return Hash360(vch.begin(), vch.end());
 }
 
 /** Compute the 160-bit hash of a vector. */
 template<unsigned int N>
-inline uint160 Hash160(const prevector<N, unsigned char>& vch)
+inline uint160 Hash360(const prevector<N, unsigned char>& vch)
 {
-    return Hash160(vch.begin(), vch.end());
+    return Hash360(vch.begin(), vch.end());
 }
 
-/** A writer stream (for serialization) that computes a 256-bit hash. */
+/** A writer stream (for serialization) that computes a 256-bit SHA-3-256 hash. */
 class CHashWriter
 {
 private:
-    CHash256 ctx;
+    CHash3 ctx;
 
     const int nType;
     const int nVersion;
@@ -146,7 +195,7 @@ public:
     }
 };
 
-/** Reads data from an underlying stream, while hashing the read data. */
+/** Reads data from an underlying stream, while hashing the read data (SHA-256). */
 template<typename Source>
 class CHashVerifier : public CHashWriter
 {
