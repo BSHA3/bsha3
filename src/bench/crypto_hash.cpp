@@ -14,6 +14,8 @@
 #include <crypto/sha1.h>
 #include <crypto/sha256.h>
 #include <crypto/sha512.h>
+#include <crypto/sha3.h>
+#include <crypto/sha3512.h>
 
 /* Number of bytes to hash per iteration */
 static const uint64_t BUFFER_SIZE = 1000*1000;
@@ -42,11 +44,29 @@ static void SHA256(benchmark::State& state)
         CSHA256().Write(in.data(), in.size()).Finalize(hash);
 }
 
+static void SHA3(benchmark::State& state) // SHA3-256
+{
+    uint8_t hash[CSHA3::OUTPUT_SIZE];
+    std::vector<uint8_t> in(BUFFER_SIZE,0);
+    while (state.KeepRunning())
+        CSHA3().Write(in.data(), in.size()).Finalize(hash);
+}
+
 static void SHA256_32b(benchmark::State& state)
 {
     std::vector<uint8_t> in(32,0);
     while (state.KeepRunning()) {
         CSHA256()
+            .Write(in.data(), in.size())
+            .Finalize(in.data());
+    }
+}
+
+static void SHA3_32b(benchmark::State& state)
+{
+    std::vector<uint8_t> in(32,0);
+    while (state.KeepRunning()) {
+        CSHA3()
             .Write(in.data(), in.size())
             .Finalize(in.data());
     }
@@ -60,12 +80,30 @@ static void SHA256D64_1024(benchmark::State& state)
     }
 }
 
+/* TODO
+static void SHA3D64_1024(benchmark::State& state)
+{
+    std::vector<uint8_t> in(64 * 1024, 0);
+    while (state.KeepRunning()) {
+        SHA3D64(in.data(), in.data(), 1024);
+    }
+}
+*/
+
 static void SHA512(benchmark::State& state)
 {
     uint8_t hash[CSHA512::OUTPUT_SIZE];
     std::vector<uint8_t> in(BUFFER_SIZE,0);
     while (state.KeepRunning())
         CSHA512().Write(in.data(), in.size()).Finalize(hash);
+}
+
+static void SHA3512(benchmark::State& state)
+{
+    uint8_t hash[CSHA3512::OUTPUT_SIZE];
+    std::vector<uint8_t> in(BUFFER_SIZE,0);
+    while (state.KeepRunning())
+        CSHA3512().Write(in.data(), in.size()).Finalize(hash);
 }
 
 static void SipHash_32b(benchmark::State& state)
