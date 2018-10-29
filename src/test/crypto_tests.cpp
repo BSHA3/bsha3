@@ -8,6 +8,7 @@
 #include <crypto/sha1.h>
 #include <crypto/sha256.h>
 #include <crypto/sha512.h>
+#include <crypto/sha3.h>
 #include <crypto/hmac_sha256.h>
 #include <crypto/hmac_sha512.h>
 #include <random.h>
@@ -54,6 +55,7 @@ static void TestVector(const Hasher &h, const In &in, const Out &out) {
 static void TestSHA1(const std::string &in, const std::string &hexout) { TestVector(CSHA1(), in, ParseHex(hexout));}
 static void TestSHA256(const std::string &in, const std::string &hexout) { TestVector(CSHA256(), in, ParseHex(hexout));}
 static void TestSHA512(const std::string &in, const std::string &hexout) { TestVector(CSHA512(), in, ParseHex(hexout));}
+static void TestSHA3(const std::string &in, const std::string &hexout) { TestVector(CSHA3(), in, ParseHex(hexout));}
 static void TestRIPEMD160(const std::string &in, const std::string &hexout) { TestVector(CRIPEMD160(), in, ParseHex(hexout));}
 
 static void TestHMACSHA256(const std::string &hexkey, const std::string &hexin, const std::string &hexout) {
@@ -303,6 +305,11 @@ BOOST_AUTO_TEST_CASE(sha512_testvectors) {
     TestSHA512(test1,
                "40cac46c147e6131c5193dd5f34e9d8bb4951395f27b08c558c65ff4ba2de594"
                "37de8c3ef5459d76a52cedc02dc499a3c9ed9dedbfb3281afd9653b8a112fafc");
+}
+
+BOOST_AUTO_TEST_CASE(sha3_testvectors) {
+    TestSHA3("", "a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a");
+    TestSHA3("abc", "3a985da74fe225b2045c172d6bd390bd855f086e3e9d525b46bfe24511431532");
 }
 
 BOOST_AUTO_TEST_CASE(hmac_sha256_testvectors) {
