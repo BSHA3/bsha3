@@ -314,6 +314,8 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/hmac_sha256.h \
   crypto/hmac_sha512.cpp \
   crypto/hmac_sha512.h \
+  crypto/hmac_sha3512.cpp \
+  crypto/hmac_sha3512.h \
   crypto/ripemd160.cpp \
   crypto/ripemd160.h \
   crypto/sha1.cpp \
@@ -321,7 +323,24 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/sha256.cpp \
   crypto/sha256.h \
   crypto/sha512.cpp \
-  crypto/sha512.h
+  crypto/sha512.h \
+  crypto/sha3.cpp \
+  crypto/sha3.h \
+  crypto/sha3512.cpp \
+  crypto/sha3512.h \
+  crypto/keccak/Crypto.cpp \
+  crypto/keccak/Crypto.h \
+  crypto/keccak/Hash.cpp \
+  crypto/keccak/Hash.h \
+  crypto/keccak/KeccakCore.cpp \
+  crypto/keccak/KeccakCore.h \
+  crypto/keccak/SHA3.cpp \
+  crypto/keccak/SHA3.h \
+  crypto/keccak/utility/EndianUtil.h \
+  crypto/keccak/utility/LimbUtil.h \
+  crypto/keccak/utility/ProgMemUtil.h \
+  crypto/keccak/utility/RotateUtil.h
+
 
 if USE_ASM
 crypto_libbitcoin_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
