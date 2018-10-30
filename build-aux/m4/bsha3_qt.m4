@@ -5,7 +5,7 @@ dnl file COPYING or http://www.opensource.org/licenses/mit-license.php.
 dnl Helper for cases where a qt dependency is not met.
 dnl Output: If qt version is auto, set bitcoin_enable_qt to false. Else, exit.
 AC_DEFUN([BITCOIN_QT_FAIL],[
-  if test "x$bitcoin_qt_want_version" = xauto && test "x$bitcoin_qt_force" != xyes; then
+  if test "x$bsha3_qt_want_version" = xauto && test "x$bsha3_qt_force" != xyes; then
     if test "x$bitcoin_enable_qt" != xno; then
       AC_MSG_WARN([$1; bsha3-qt frontend will not be built])
     fi
@@ -17,7 +17,7 @@ AC_DEFUN([BITCOIN_QT_FAIL],[
 ])
 
 AC_DEFUN([BITCOIN_QT_CHECK],[
-  if test "x$bitcoin_enable_qt" != xno && test "x$bitcoin_qt_want_version" != xno; then
+  if test "x$bitcoin_enable_qt" != xno && test "x$bsha3_qt_want_version" != xno; then
     true
     $1
   else
@@ -56,13 +56,13 @@ AC_DEFUN([BITCOIN_QT_INIT],[
     [AS_HELP_STRING([--with-gui@<:@=no|qt5|auto@:>@],
     [build bsha3-qt GUI (default=auto)])],
     [
-     bitcoin_qt_want_version=$withval
-     if test "x$bitcoin_qt_want_version" = xyes; then
-       bitcoin_qt_force=yes
-       bitcoin_qt_want_version=auto
+     bsha3_qt_want_version=$withval
+     if test "x$bsha3_qt_want_version" = xyes; then
+       bsha3_qt_force=yes
+       bsha3_qt_want_version=auto
      fi
     ],
-    [bitcoin_qt_want_version=auto])
+    [bsha3_qt_want_version=auto])
 
   AC_ARG_WITH([qt-incdir],[AS_HELP_STRING([--with-qt-incdir=INC_DIR],[specify qt include path (overridden by pkgconfig)])], [qt_include_path=$withval], [])
   AC_ARG_WITH([qt-libdir],[AS_HELP_STRING([--with-qt-libdir=LIB_DIR],[specify qt lib path (overridden by pkgconfig)])], [qt_lib_path=$withval], [])
@@ -419,9 +419,9 @@ AC_DEFUN([_BITCOIN_QT_FIND_STATIC_PLUGINS],[
 ])
 
 dnl Internal. Find Qt libraries using pkg-config.
-dnl Inputs: bitcoin_qt_want_version (from --with-gui=). The version to check
+dnl Inputs: bsha3_qt_want_version (from --with-gui=). The version to check
 dnl         first.
-dnl Inputs: $1: If bitcoin_qt_want_version is "auto", check for this version
+dnl Inputs: $1: If bsha3_qt_want_version is "auto", check for this version
 dnl         first.
 dnl Outputs: All necessary QT_* variables are set.
 dnl Outputs: have_qt_test and have_qt_dbus are set (if applicable) to yes|no.
@@ -449,7 +449,7 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITH_PKGCONFIG],[
 
 dnl Internal. Find Qt libraries without using pkg-config. Version is deduced
 dnl from the discovered headers.
-dnl Inputs: bitcoin_qt_want_version (from --with-gui=). The version to use.
+dnl Inputs: bsha3_qt_want_version (from --with-gui=). The version to use.
 dnl         If "auto", the version will be discovered by _BITCOIN_QT_CHECK_QT5.
 dnl Outputs: All necessary QT_* variables are set.
 dnl Outputs: have_qt_test and have_qt_dbus are set (if applicable) to yes|no.
@@ -470,7 +470,7 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
   BITCOIN_QT_CHECK([AC_CHECK_HEADER([QLocalSocket],, BITCOIN_QT_FAIL(QtNetwork headers missing))])
 
   BITCOIN_QT_CHECK([
-    if test "x$bitcoin_qt_want_version" = xauto; then
+    if test "x$bsha3_qt_want_version" = xauto; then
       _BITCOIN_QT_CHECK_QT5
       _BITCOIN_QT_CHECK_QT58
     fi

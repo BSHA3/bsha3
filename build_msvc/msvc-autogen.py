@@ -6,7 +6,7 @@ import re
 SOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 libs = [
-    'libbitcoin_cli',
+    'libbsha3_cli',
     'libbitcoin_common',
     'libbitcoin_crypto',
     'libbitcoin_server',

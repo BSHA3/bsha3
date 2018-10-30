@@ -30,7 +30,7 @@
     <ProjectReference Include="..\libbitcoinconsensus\libbitcoinconsensus.vcxproj">
       <Project>{2b384fa8-9ee1-4544-93cb-0d733c25e8ce}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\libbitcoin_cli\libbitcoin_cli.vcxproj">
+    <ProjectReference Include="..\libbsha3_cli\libbsha3_cli.vcxproj">
       <Project>{0667528c-d734-4009-adf9-c0d6c4a5a5a6}</Project>
     </ProjectReference>
     <ProjectReference Include="..\libbitcoin_common\libbitcoin_common.vcxproj">

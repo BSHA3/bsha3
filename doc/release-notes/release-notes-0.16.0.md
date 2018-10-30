@@ -376,7 +376,7 @@ Testing changes
 - #11903 `8f68fd2` [trivial] Add required package dependencies for depends cross compilation (jonasschnelli)
 - #12168 `45cf8a0`  #include sys/fcntl.h to just fcntl.h (without sys/) (jsarenik)
 - #12095 `3fa1ab4` Use BDB_LIBS/CFLAGS and pass --disable-replication (fanquake)
-- #11711 `6378e5c` bitcoin_qt.m4: Minor fixes and clean-ups (fanquake)
+- #11711 `6378e5c` bsha3_qt.m4: Minor fixes and clean-ups (fanquake)
 - #11989 `90d4104` .gitignore: add QT Creator artifacts (Sjors)
 - #11577 `c0ae864` Fix warnings (-Wsign-compare) when building with DEBUG_ADDRMAN (practicalswift)
 

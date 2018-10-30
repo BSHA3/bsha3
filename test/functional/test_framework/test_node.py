@@ -59,7 +59,7 @@ class TestNode():
     To make things easier for the test writer, any unrecognised messages will
     be dispatched to the RPC connection."""
 
-    def __init__(self, i, datadir, *, rpchost, timewait, bsha3d, bitcoin_cli, mocktime, coverage_dir, extra_conf=None, extra_args=None, use_cli=False):
+    def __init__(self, i, datadir, *, rpchost, timewait, bsha3d, bsha3_cli, mocktime, coverage_dir, extra_conf=None, extra_args=None, use_cli=False):
         self.index = i
         self.datadir = datadir
         self.stdout_dir = os.path.join(self.datadir, "stdout")
@@ -85,7 +85,7 @@ class TestNode():
             "-uacomment=testnode%d" % i
         ]
 
-        self.cli = TestNodeCLI(bitcoin_cli, self.datadir)
+        self.cli = TestNodeCLI(bsha3_cli, self.datadir)
         self.use_cli = use_cli
 
         self.running = False

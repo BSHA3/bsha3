@@ -14,7 +14,7 @@ _bitcoin_rpc() {
                 ;;
         esac
     done
-    $bitcoin_cli "${rpcargs[@]}" "$@"
+    $bsha3_cli "${rpcargs[@]}" "$@"
 }
 
 # Add wallet accounts to COMPREPLY
@@ -24,13 +24,13 @@ _bitcoin_accounts() {
     COMPREPLY=( "${COMPREPLY[@]}" $( compgen -W "$accounts" -- "$cur" ) )
 }
 
-_bitcoin_cli() {
+_bsha3_cli() {
     local cur prev words=() cword
-    local bitcoin_cli
+    local bsha3_cli
 
     # save and use original argument to invoke bsha3-cli for -help, help and RPC
     # as bsha3-cli might not be in $PATH
-    bitcoin_cli="$1"
+    bsha3_cli="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -125,7 +125,7 @@ _bitcoin_cli() {
 
             # only parse -help if senseful
             if [[ -z "$cur" || "$cur" =~ ^- ]]; then
-                helpopts=$($bitcoin_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
+                helpopts=$($bsha3_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
             fi
 
             # only parse help if senseful
@@ -143,7 +143,7 @@ _bitcoin_cli() {
             ;;
     esac
 } &&
-complete -F _bitcoin_cli bsha3-cli
+complete -F _bsha3_cli bsha3-cli
 
 # Local variables:
 # mode: shell-script
