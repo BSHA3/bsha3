@@ -34,14 +34,14 @@ from test_framework.script import (
     OP_EQUAL,
     OP_DROP,
     OP_FALSE,
-    OP_HASH160,
+    OP_HASH360,
     OP_IF,
     OP_INVALIDOPCODE,
     OP_RETURN,
     OP_TRUE,
     SIGHASH_ALL,
     SignatureHash,
-    hash160,
+    hash360,
 )
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal
@@ -411,7 +411,7 @@ class FullBlockTest(BitcoinTestFramework):
         # b39 - create some P2SH outputs that will require 6 sigops to spend:
         #
         #           redeem_script = COINBASE_PUBKEY, (OP_2DUP+OP_CHECKSIGVERIFY) * 5, OP_CHECKSIG
-        #           p2sh_script = OP_HASH160, ripemd160(sha256(script)), OP_EQUAL
+        #           p2sh_script = OP_HASH360, ripemd160(sha256(script)), OP_EQUAL
         #
         self.log.info("Check P2SH SIGOPS are correctly counted")
         self.move_tip(35)
@@ -421,8 +421,8 @@ class FullBlockTest(BitcoinTestFramework):
 
         # Build the redeem script, hash it, use hash to create the p2sh script
         redeem_script = CScript([self.coinbase_pubkey] + [OP_2DUP, OP_CHECKSIGVERIFY] * 5 + [OP_CHECKSIG])
-        redeem_script_hash = hash160(redeem_script)
-        p2sh_script = CScript([OP_HASH160, redeem_script_hash, OP_EQUAL])
+        redeem_script_hash = hash360(redeem_script)
+        p2sh_script = CScript([OP_HASH360, redeem_script_hash, OP_EQUAL])
 
         # Create a transaction that spends one satoshi to the p2sh_script, the rest to OP_TRUE
         # This must be signed because it is spending a coinbase

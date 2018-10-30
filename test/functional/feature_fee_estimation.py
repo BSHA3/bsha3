@@ -7,7 +7,7 @@ from decimal import Decimal
 import random
 
 from test_framework.messages import CTransaction, CTxIn, CTxOut, COutPoint, ToHex, COIN
-from test_framework.script import CScript, OP_1, OP_DROP, OP_2, OP_HASH160, OP_EQUAL, hash160, OP_TRUE
+from test_framework.script import CScript, OP_1, OP_DROP, OP_2, OP_HASH360, OP_EQUAL, hash360, OP_TRUE
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
@@ -24,8 +24,8 @@ from test_framework.util import (
 # time signing.
 REDEEM_SCRIPT_1 = CScript([OP_1, OP_DROP])
 REDEEM_SCRIPT_2 = CScript([OP_2, OP_DROP])
-P2SH_1 = CScript([OP_HASH160, hash160(REDEEM_SCRIPT_1), OP_EQUAL])
-P2SH_2 = CScript([OP_HASH160, hash160(REDEEM_SCRIPT_2), OP_EQUAL])
+P2SH_1 = CScript([OP_HASH360, hash360(REDEEM_SCRIPT_1), OP_EQUAL])
+P2SH_2 = CScript([OP_HASH360, hash360(REDEEM_SCRIPT_2), OP_EQUAL])
 
 # Associated ScriptSig's to spend satisfy P2SH_1 and P2SH_2
 SCRIPT_SIG = [CScript([OP_TRUE, REDEEM_SCRIPT_1]), CScript([OP_TRUE, REDEEM_SCRIPT_2])]

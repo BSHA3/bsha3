@@ -15,11 +15,11 @@ from test_framework.messages import (
     MAX_BLOCK_BASE_SIZE,
 )
 from test_framework.script import (
-    hash160,
+    hash360,
     CScript,
     OP_0,
     OP_EQUAL,
-    OP_HASH160,
+    OP_HASH360,
     OP_RETURN,
 )
 from test_framework.util import (
@@ -243,13 +243,13 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
             rawtxs=[bytes_to_hex_str(tx.serialize())],
         )
         tx.deserialize(BytesIO(hex_str_to_bytes(raw_tx_reference)))
-        tx.vin[0].scriptSig = CScript([OP_HASH160])  # Some not-pushonly scriptSig
+        tx.vin[0].scriptSig = CScript([OP_HASH360])  # Some not-pushonly scriptSig
         self.check_mempool_result(
             result_expected=[{'txid': tx.rehash(), 'allowed': False, 'reject-reason': '64: scriptsig-not-pushonly'}],
             rawtxs=[bytes_to_hex_str(tx.serialize())],
         )
         tx.deserialize(BytesIO(hex_str_to_bytes(raw_tx_reference)))
-        output_p2sh_burn = CTxOut(nValue=540, scriptPubKey=CScript([OP_HASH160, hash160(b'burn'), OP_EQUAL]))
+        output_p2sh_burn = CTxOut(nValue=540, scriptPubKey=CScript([OP_HASH360, hash360(b'burn'), OP_EQUAL]))
         num_scripts = 100000 // len(output_p2sh_burn.serialize())  # Use enough outputs to make the tx too large for our policy
         tx.vout = [output_p2sh_burn] * num_scripts
         self.check_mempool_result(

@@ -19,7 +19,7 @@ MAX_SCRIPT_ELEMENT_SIZE = 520
 
 OPCODE_NAMES = {}
 
-def hash160(s):
+def hash360(s):
     return hashlib.new('ripemd160', sha256(s)).digest()
 
 
@@ -202,10 +202,10 @@ OP_WITHIN = CScriptOp(0xa5)
 
 # crypto
 OP_RIPEMD160 = CScriptOp(0xa6)
-OP_SHA1 = CScriptOp(0xa7)
+OP_SHA3 = CScriptOp(0xa7)
 OP_SHA256 = CScriptOp(0xa8)
-OP_HASH160 = CScriptOp(0xa9)
-OP_HASH256 = CScriptOp(0xaa)
+OP_HASH360 = CScriptOp(0xa9)
+OP_HASH3 = CScriptOp(0xaa)
 OP_CODESEPARATOR = CScriptOp(0xab)
 OP_CHECKSIG = CScriptOp(0xac)
 OP_CHECKSIGVERIFY = CScriptOp(0xad)
@@ -325,10 +325,10 @@ OPCODE_NAMES.update({
     OP_MAX : 'OP_MAX',
     OP_WITHIN : 'OP_WITHIN',
     OP_RIPEMD160 : 'OP_RIPEMD160',
-    OP_SHA1 : 'OP_SHA1',
+    OP_SHA3 : 'OP_SHA3',
     OP_SHA256 : 'OP_SHA256',
-    OP_HASH160 : 'OP_HASH160',
-    OP_HASH256 : 'OP_HASH256',
+    OP_HASH360 : 'OP_HASH360',
+    OP_HASH3 : 'OP_HASH3',
     OP_CODESEPARATOR : 'OP_CODESEPARATOR',
     OP_CHECKSIG : 'OP_CHECKSIG',
     OP_CHECKSIGVERIFY : 'OP_CHECKSIGVERIFY',

@@ -59,7 +59,7 @@ from test_framework.script import (
     OP_ENDIF,
     OP_EQUAL,
     OP_EQUALVERIFY,
-    OP_HASH160,
+    OP_HASH360,
     OP_IF,
     OP_RETURN,
     OP_TRUE,
@@ -69,7 +69,7 @@ from test_framework.script import (
     SIGHASH_SINGLE,
     SegwitVersion1SignatureHash,
     SignatureHash,
-    hash160,
+    hash360,
 )
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
@@ -99,7 +99,7 @@ class UTXO():
 
 def get_p2pkh_script(pubkeyhash):
     """Get the script associated with a P2PKH."""
-    return CScript([CScriptOp(OP_DUP), CScriptOp(OP_HASH160), pubkeyhash, CScriptOp(OP_EQUALVERIFY), CScriptOp(OP_CHECKSIG)])
+    return CScript([CScriptOp(OP_DUP), CScriptOp(OP_HASH360), pubkeyhash, CScriptOp(OP_EQUALVERIFY), CScriptOp(OP_CHECKSIG)])
 
 def sign_p2pk_witness_input(script, tx_to, in_idx, hashtype, value, key):
     """Add signature for a P2PK witness program."""
@@ -473,7 +473,7 @@ class SegWitTest(BitcoinTestFramework):
         script_pubkey = CScript([OP_0, witness_hash])
 
         p2sh_pubkey = hash160(script_pubkey)
-        p2sh_script_pubkey = CScript([OP_HASH160, p2sh_pubkey, OP_EQUAL])
+        p2sh_script_pubkey = CScript([OP_HASH360, p2sh_pubkey, OP_EQUAL])
 
         value = self.utxo[0].nValue // 3
 
@@ -657,7 +657,7 @@ class SegWitTest(BitcoinTestFramework):
         script_pubkey = CScript([OP_0, witness_hash])
 
         p2sh_pubkey = hash160(witness_program)
-        p2sh_script_pubkey = CScript([OP_HASH160, p2sh_pubkey, OP_EQUAL])
+        p2sh_script_pubkey = CScript([OP_HASH360, p2sh_pubkey, OP_EQUAL])
 
         # First prepare a p2sh output (so that spending it will pass standardness)
         p2sh_tx = CTransaction()
@@ -742,7 +742,7 @@ class SegWitTest(BitcoinTestFramework):
         witness_hash = sha256(witness_program)
         p2wsh_pubkey = CScript([OP_0, witness_hash])
         p2sh_witness_hash = hash160(p2wsh_pubkey)
-        script_pubkey = CScript([OP_HASH160, p2sh_witness_hash, OP_EQUAL])
+        script_pubkey = CScript([OP_HASH360, p2sh_witness_hash, OP_EQUAL])
         script_sig = CScript([p2wsh_pubkey])  # a push of the redeem script
 
         # Fund the P2SH output
@@ -1333,7 +1333,7 @@ class SegWitTest(BitcoinTestFramework):
         p2sh_program = CScript([OP_TRUE])
         p2sh_pubkey = hash160(p2sh_program)
         witness_program2 = CScript([b'a' * 400000])
-        tx3.vout.append(CTxOut(tx2.vout[0].nValue - 1000, CScript([OP_HASH160, p2sh_pubkey, OP_EQUAL])))
+        tx3.vout.append(CTxOut(tx2.vout[0].nValue - 1000, CScript([OP_HASH360, p2sh_pubkey, OP_EQUAL])))
         tx3.wit.vtxinwit[0].scriptWitness.stack = [witness_program2]
         tx3.rehash()
 
@@ -1554,7 +1554,7 @@ class SegWitTest(BitcoinTestFramework):
         # Try to spend the P2WSH output created in last test.
         # Send it to a P2SH(P2WSH) output, which we'll use in the next test.
         p2sh_witness_hash = hash160(script_wsh)
-        script_p2sh = CScript([OP_HASH160, p2sh_witness_hash, OP_EQUAL])
+        script_p2sh = CScript([OP_HASH360, p2sh_witness_hash, OP_EQUAL])
         script_sig = CScript([script_wsh])
 
         tx3 = CTransaction()
@@ -1793,7 +1793,7 @@ class SegWitTest(BitcoinTestFramework):
         # in P2SH).
         p2sh_program = CScript([OP_TRUE])
         p2sh_pubkey = hash160(p2sh_program)
-        script_pubkey = CScript([OP_HASH160, p2sh_pubkey, OP_EQUAL])
+        script_pubkey = CScript([OP_HASH360, p2sh_pubkey, OP_EQUAL])
 
         # Now check that unnecessary witnesses can't be used to blind a node
         # to a transaction, eg by violating standardness checks.
@@ -1862,7 +1862,7 @@ class SegWitTest(BitcoinTestFramework):
             p2sh = hash160(p2wsh)
             p2wsh_scripts.append(p2wsh)
             tx.vout.append(CTxOut(outputvalue, p2wsh))
-            tx.vout.append(CTxOut(outputvalue, CScript([OP_HASH160, p2sh, OP_EQUAL])))
+            tx.vout.append(CTxOut(outputvalue, CScript([OP_HASH360, p2sh, OP_EQUAL])))
         tx.rehash()
         txid = tx.sha256
         test_transaction_acceptance(self.nodes[0], self.test_node, tx, with_witness=False, accepted=True)

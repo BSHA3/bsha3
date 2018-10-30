@@ -36,7 +36,7 @@ from .script import (
     OP_CHECKSIG,
     OP_RETURN,
     OP_TRUE,
-    hash160,
+    hash360,
 )
 from .util import assert_equal
 from io import BytesIO
@@ -176,7 +176,7 @@ def witness_script(use_p2wsh, pubkey):
     scriptPubKey."""
     if not use_p2wsh:
         # P2WPKH instead
-        pubkeyhash = hash160(hex_str_to_bytes(pubkey))
+        pubkeyhash = hash360(hex_str_to_bytes(pubkey))
         pkscript = CScript([OP_0, pubkeyhash])
     else:
         # 1-of-1 multisig
