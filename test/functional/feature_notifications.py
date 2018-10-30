@@ -71,7 +71,7 @@ class NotificationsTest(BitcoinTestFramework):
         self.nodes[1].generatetoaddress(41, ADDRESS_BCRT1_UNSPENDABLE)
         self.sync_all()
 
-        # Give bitcoind 10 seconds to write the alert notification
+        # Give bsha3d 10 seconds to write the alert notification
         wait_until(lambda: len(os.listdir(self.alertnotify_dir)), timeout=10)
 
         for notify_file in os.listdir(self.alertnotify_dir):
