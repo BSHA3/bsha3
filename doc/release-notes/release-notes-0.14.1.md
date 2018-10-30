@@ -117,7 +117,7 @@ git merge commit are mentioned.
 ### Miscellaneous
 - #10037 `4d8e660` Trivial: Fix typo in help getrawtransaction RPC (keystrike)
 - #10120 `e4c9a90` util: Work around (virtual) memory exhaustion on 32-bit w/ glibc (laanwj)
-- #10130 `ecc5232` bitcoin-tx input verification (awemany, jnewbery)
+- #10130 `ecc5232` bsha3-tx input verification (awemany, jnewbery)
 
 Credits
 =======

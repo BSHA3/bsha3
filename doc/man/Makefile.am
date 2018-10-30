@@ -13,5 +13,5 @@ if BUILD_BITCOIN_CLI
 endif
 
 if BUILD_BITCOIN_TX
-  dist_man1_MANS+=bitcoin-tx.1
+  dist_man1_MANS+=bsha3-tx.1
 endif

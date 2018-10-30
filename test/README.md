@@ -9,7 +9,7 @@ This directory contains the following sets of tests:
 bsha3d and bitcoin-qt by interacting with them through the RPC and P2P
 interfaces.
 - [util](/test/util) which tests the bitcoin utilities, currently only
-bitcoin-tx.
+bsha3-tx.
 - [lint](/test/lint/) which perform various static analysis checks.
 
 The util tests are run as part of `make check` target. The functional

@@ -87,9 +87,9 @@ the vulnerable versions to 0.15.2 or 0.16.3 as soon as possible.
 - #11289 `42ea47d` Add wallet backup text to import*, add* and dumpwallet RPCs (MeshCollider)
 - #11590 `6372a75` [Wallet] always show help-line of wallet encryption calls (Jonas Schnelli)
 
-### bitcoin-tx
+### bsha3-tx
 
-- #11554 `a69cc07` Sanity-check script sizes in bitcoin-tx (TheBlueMatt)
+- #11554 `a69cc07` Sanity-check script sizes in bsha3-tx (TheBlueMatt)
 
 ### Tests
 - #11277 `3a6cdd4` Add test for multiwallet batch RPC calls (Russell Yanofsky)

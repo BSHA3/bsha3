@@ -848,7 +848,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13494 `d67eff8` Follow-up to #13454: Fix broken build by exporting `LC_ALL=C` (practicalswift)
 - #13510 `03f3925` Scripts and tools: Obsolete #!/bin/bash shebang (DesWurstes)
 - #13577 `c9eb8d1` logging: Avoid nstart may be used uninitialized in appinitmain warning (mruddy)
-- #13603 `453ae5e` bitcoin-tx: Stricter check for valid integers (domob1812)
+- #13603 `453ae5e` bsha3-tx: Stricter check for valid integers (domob1812)
 - #13118 `c05c93c` RPCAuth Detection in Logs (Linrono)
 - #13647 `4027ec1` Scripts and tools: Fix `BIND_NOW` check in security-check.py (conradoplg)
 - #13692 `f5d166a` contrib: Clone core repo in gitian-build (MarcoFalke)

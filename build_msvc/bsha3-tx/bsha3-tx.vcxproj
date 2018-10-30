@@ -20,7 +20,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\bitcoin-tx.cpp" />
+    <ClCompile Include="..\..\src\bsha3-tx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libbitcoinconsensus\libbitcoinconsensus.vcxproj">

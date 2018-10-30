@@ -406,7 +406,7 @@ git merge commit are mentioned.
 - #5964 `b4c219b` Lightweight task scheduler
 - #6116 `30dc3c1` [OSX] rename Bitcoin-Qt.app to Bitcoin-Core.app
 - #6168 `b3024f0` contrib/linearize: Support linearization of testnet blocks
-- #6098 `7708fcd` Update Windows resource files (and add one for bitcoin-tx)
+- #6098 `7708fcd` Update Windows resource files (and add one for bsha3-tx)
 - #6159 `e1412d3` Catch errors on datadir lock and pidfile delete
 - #6186 `182686c` Fix two problems in CSubnet parsing
 - #6174 `df992b9` doc: add translation strings policy

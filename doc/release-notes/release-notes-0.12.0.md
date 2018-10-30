@@ -379,7 +379,7 @@ and are affected by this change:
 - RPC `decodescript`
 - REST `/rest/tx/` (JSON format)
 - REST `/rest/block/` (JSON format when including extended tx details)
-- `bitcoin-tx -json`
+- `bsha3-tx -json`
 
 For example, the `scriptSig.asm` property of a transaction input that
 previously showed an assembly representation of:
@@ -644,7 +644,7 @@ git merge commit are mentioned.
 - #6373 `1ae3196` depends: non-qt bumps for 0.12 (Cory Fields)
 - #6434 `059b352` Preserve user-passed CXXFLAGS with --enable-debug (Gavin Andresen)
 - #6501 `fee6554` Misc build fixes (Cory Fields)
-- #6600 `ef4945f` Include bitcoin-tx binary on Debian/Ubuntu (Zak Wilcox)
+- #6600 `ef4945f` Include bsha3-tx binary on Debian/Ubuntu (Zak Wilcox)
 - #6619 `4862708` depends: bump miniupnpc and ccache (Michael Ford)
 - #6801 `ae69a75` [depends] Latest config.guess and config.sub (Michael Ford)
 - #6938 `193f7b5` build: If both Qt4 and Qt5 are installed, use Qt5 (Wladimir J. van der Laan)
@@ -719,7 +719,7 @@ git merge commit are mentioned.
 - #6337 `0564c5b` Testing infrastructure: mocktime fixes (Gavin Andresen)
 - #6350 `60abba1` add unit tests for the decodescript rpc (mruddy)
 - #5881 `3203a08` Fix and improve txn_doublespend.py test (Tom Harding)
-- #6390 `6a73d66` tests: Fix bitcoin-tx signing test case (Wladimir J. van der Laan)
+- #6390 `6a73d66` tests: Fix bsha3-tx signing test case (Wladimir J. van der Laan)
 - #6368 `7fc25c2` CLTV: Add more tests to improve coverage (Esteban Ordano)
 - #6414 `5121c68` Fix intermittent test failure, reduce test time (Tom Harding)
 - #6417 `44fa82d` [QA] fix possible reorg issue in (fund)rawtransaction(s).py RPC test (Jonas Schnelli)

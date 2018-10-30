@@ -87,7 +87,7 @@ if BUILD_BITCOIN_CLI
   bin_PROGRAMS += bsha3-cli
 endif
 if BUILD_BITCOIN_TX
-  bin_PROGRAMS += bitcoin-tx
+  bin_PROGRAMS += bsha3-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -512,14 +512,14 @@ bitcoin_cli_LDADD = \
 bitcoin_cli_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# bitcoin-tx binary #
-bitcoin_tx_SOURCES = bitcoin-tx.cpp
+# bsha3-tx binary #
+bitcoin_tx_SOURCES = bsha3-tx.cpp
 bitcoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 bitcoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 bitcoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-bitcoin_tx_SOURCES += bitcoin-tx-res.rc
+bitcoin_tx_SOURCES += bsha3-tx-res.rc
 endif
 
 bitcoin_tx_LDADD = \

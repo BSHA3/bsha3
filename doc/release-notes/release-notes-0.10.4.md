@@ -129,8 +129,8 @@ git merge commit are mentioned.
 - #6953 `a2f2fb6` build: disable -Wself-assign
 - #6953 `cf67d8b` Bugfix: Allow mining on top of old tip blocks for testnet (fixes testnet-in-a-box use case)
 - #6953 `b3964e3` Drop "with minimal dependencies" from description
-- #6953 `43c2789` Split bitcoin-tx into its own package
-- #6953 `dfe0d4d` Include bitcoin-tx binary on Debian/Ubuntu
+- #6953 `43c2789` Split bsha3-tx into its own package
+- #6953 `dfe0d4d` Include bsha3-tx binary on Debian/Ubuntu
 - #6953 `612efe8` [Qt] Raise debug window when requested
 - #6953 `3ad96bd` Fix locking in GetTransaction
 - #6953 `9c81005` Fix spelling of Qt

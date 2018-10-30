@@ -232,7 +232,7 @@ Low-level RPC changes
 - #11310 `b6468d3` Test listwallets RPC (mess110)
 
 ### Miscellaneous
-- #11377 `75997c3` Disallow uncompressed pubkeys in bitcoin-tx [multisig] output adds (TheBlueMatt)
+- #11377 `75997c3` Disallow uncompressed pubkeys in bsha3-tx [multisig] output adds (TheBlueMatt)
 - #11437 `dea3b87` [Docs] Update Windows build instructions for using WSL and Ubuntu 17.04 (fanquake)
 - #11318 `8b61aee` Put back inadvertently removed copyright notices (gmaxwell)
 - #11442 `cf18f42` [Docs] Update OpenBSD Build Instructions for OpenBSD 6.2 (fanquake)

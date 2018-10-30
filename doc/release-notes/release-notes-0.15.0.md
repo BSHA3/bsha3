@@ -331,7 +331,7 @@ Low-level RPC changes
 - #9740 `9fec4da` Add friendly output to dumpwallet (aideca)
 - #10426 `16f6c98` Replace bytes_serialized with bogosize (sipa)
 - #10252 `980deaf` RPC/Mining: Restore API compatibility for prioritisetransaction (luke-jr)
-- #9672 `46311e7` Opt-into-RBF for RPC & bitcoin-tx (luke-jr)
+- #9672 `46311e7` Opt-into-RBF for RPC & bsha3-tx (luke-jr)
 - #10481 `9c248e3` Decodehextx scripts sanity check  (achow101)
 - #10488 `fa1f106` Note that the prioritizetransaction dummy value is deprecated, and has no meaning (TheBlueMatt)
 - #9738 `c94b89e` gettxoutproof() should return consistent result (jnewbery)
