@@ -393,10 +393,6 @@ void SelectParams(const std::string& network)
     globalChainParams = CreateChainParams(network);
 }
 
-void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout)
-{
-    UpdateVersionBitsParameters(d, nStartTime, nTimeout);
-}
 
 void CChainParams::TurnOffSegwit() {
 	consensus.nSegwitEnabled = false;
