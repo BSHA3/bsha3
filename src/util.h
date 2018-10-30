@@ -350,6 +350,8 @@ std::string CopyrightHolders(const std::string& strPrefix);
  */
 int ScheduleBatchPriority();
 
+void SetThreadPriority(int nPriority);
+
 namespace util {
 
 //! Simplification of std insertion

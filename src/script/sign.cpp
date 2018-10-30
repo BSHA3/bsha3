@@ -208,7 +208,7 @@ bool ProduceSignature(const SigningProvider& provider, const BaseSignatureCreato
     if (solved && whichType == TX_WITNESS_V0_KEYHASH)
     {
         CScript witnessscript;
-        witnessscript << OP_DUP << OP_HASH160 << ToByteVector(result[0]) << OP_EQUALVERIFY << OP_CHECKSIG;
+        witnessscript << OP_DUP << OP_HASH360 << ToByteVector(result[0]) << OP_EQUALVERIFY << OP_CHECKSIG;
         txnouttype subType;
         solved = solved && SignStep(provider, creator, witnessscript, result, subType, SigVersion::WITNESS_V0, sigdata);
         sigdata.scriptWitness.stack = result;

@@ -5,7 +5,7 @@
 #include <wallet/crypter.h>
 
 #include <crypto/aes.h>
-#include <crypto/sha512.h>
+#include <crypto/sha3512.h>
 #include <script/script.h>
 #include <script/standard.h>
 #include <util.h>
@@ -16,15 +16,15 @@
 int CCrypter::BytesToKeySHA512AES(const std::vector<unsigned char>& chSalt, const SecureString& strKeyData, int count, unsigned char *key,unsigned char *iv) const
 {
     // This mimics the behavior of openssl's EVP_BytesToKey with an aes256cbc
-    // cipher and sha512 message digest. Because sha512's output size (64b) is
+    // cipher and sha3-512 message digest. Because sha3-512's output size (64b) is
     // greater than the aes256 block size (16b) + aes256 key size (32b),
     // there's no need to process more than once (D_0).
 
     if(!count || !key || !iv)
         return 0;
 
-    unsigned char buf[CSHA512::OUTPUT_SIZE];
-    CSHA512 di;
+    unsigned char buf[CSHA3512::OUTPUT_SIZE];
+    CSHA3512 di;
 
     di.Write((const unsigned char*)strKeyData.c_str(), strKeyData.size());
     di.Write(chSalt.data(), chSalt.size());

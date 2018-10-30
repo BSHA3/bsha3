@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(script_standard_Solver_success)
 
     // TX_PUBKEYHASH
     s.clear();
-    s << OP_DUP << OP_HASH160 << ToByteVector(pubkeys[0].GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
+    s << OP_DUP << OP_HASH360 << ToByteVector(pubkeys[0].GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
     BOOST_CHECK_EQUAL(Solver(s, solutions), TX_PUBKEYHASH);
     BOOST_CHECK_EQUAL(solutions.size(), 1U);
     BOOST_CHECK(solutions[0] == ToByteVector(pubkeys[0].GetID()));
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE(script_standard_Solver_success)
     // TX_SCRIPTHASH
     CScript redeemScript(s); // initialize with leftover P2PKH script
     s.clear();
-    s << OP_HASH160 << ToByteVector(CScriptID(redeemScript)) << OP_EQUAL;
+    s << OP_HASH360 << ToByteVector(CScriptID(redeemScript)) << OP_EQUAL;
     BOOST_CHECK_EQUAL(Solver(s, solutions), TX_SCRIPTHASH);
     BOOST_CHECK_EQUAL(solutions.size(), 1U);
     BOOST_CHECK(solutions[0] == ToByteVector(CScriptID(redeemScript)));
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE(script_standard_Solver_success)
 
     // TX_WITNESS_V0_SCRIPTHASH
     uint256 scriptHash;
-    CSHA256().Write(&redeemScript[0], redeemScript.size())
+    CSHA3().Write(&redeemScript[0], redeemScript.size())
         .Finalize(scriptHash.begin());
 
     s.clear();
@@ -126,12 +126,12 @@ BOOST_AUTO_TEST_CASE(script_standard_Solver_failure)
 
     // TX_PUBKEYHASH with incorrectly sized key hash
     s.clear();
-    s << OP_DUP << OP_HASH160 << ToByteVector(pubkey) << OP_EQUALVERIFY << OP_CHECKSIG;
+    s << OP_DUP << OP_HASH360 << ToByteVector(pubkey) << OP_EQUALVERIFY << OP_CHECKSIG;
     BOOST_CHECK_EQUAL(Solver(s, solutions), TX_NONSTANDARD);
 
     // TX_SCRIPTHASH with incorrectly sized script hash
     s.clear();
-    s << OP_HASH160 << std::vector<unsigned char>(21, 0x01) << OP_EQUAL;
+    s << OP_HASH360 << std::vector<unsigned char>(21, 0x01) << OP_EQUAL;
     BOOST_CHECK_EQUAL(Solver(s, solutions), TX_NONSTANDARD);
 
     // TX_MULTISIG 0/2
@@ -184,7 +184,7 @@ BOOST_AUTO_TEST_CASE(script_standard_ExtractDestination)
 
     // TX_PUBKEYHASH
     s.clear();
-    s << OP_DUP << OP_HASH160 << ToByteVector(pubkey.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
+    s << OP_DUP << OP_HASH360 << ToByteVector(pubkey.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
     BOOST_CHECK(ExtractDestination(s, address));
     BOOST_CHECK(boost::get<CKeyID>(&address) &&
                 *boost::get<CKeyID>(&address) == pubkey.GetID());
@@ -192,7 +192,7 @@ BOOST_AUTO_TEST_CASE(script_standard_ExtractDestination)
     // TX_SCRIPTHASH
     CScript redeemScript(s); // initialize with leftover P2PKH script
     s.clear();
-    s << OP_HASH160 << ToByteVector(CScriptID(redeemScript)) << OP_EQUAL;
+    s << OP_HASH360 << ToByteVector(CScriptID(redeemScript)) << OP_EQUAL;
     BOOST_CHECK(ExtractDestination(s, address));
     BOOST_CHECK(boost::get<CScriptID>(&address) &&
                 *boost::get<CScriptID>(&address) == CScriptID(redeemScript));
@@ -212,13 +212,13 @@ BOOST_AUTO_TEST_CASE(script_standard_ExtractDestination)
     s << OP_0 << ToByteVector(pubkey.GetID());
     BOOST_CHECK(ExtractDestination(s, address));
     WitnessV0KeyHash keyhash;
-    CHash160().Write(pubkey.begin(), pubkey.size()).Finalize(keyhash.begin());
+    CHash360().Write(pubkey.begin(), pubkey.size()).Finalize(keyhash.begin());
     BOOST_CHECK(boost::get<WitnessV0KeyHash>(&address) && *boost::get<WitnessV0KeyHash>(&address) == keyhash);
 
     // TX_WITNESS_V0_SCRIPTHASH
     s.clear();
     WitnessV0ScriptHash scripthash;
-    CSHA256().Write(redeemScript.data(), redeemScript.size()).Finalize(scripthash.begin());
+    CSHA3().Write(redeemScript.data(), redeemScript.size()).Finalize(scripthash.begin());
     s << OP_0 << ToByteVector(scripthash);
     BOOST_CHECK(ExtractDestination(s, address));
     BOOST_CHECK(boost::get<WitnessV0ScriptHash>(&address) && *boost::get<WitnessV0ScriptHash>(&address) == scripthash);
@@ -260,7 +260,7 @@ BOOST_AUTO_TEST_CASE(script_standard_ExtractDestinations)
 
     // TX_PUBKEYHASH
     s.clear();
-    s << OP_DUP << OP_HASH160 << ToByteVector(pubkeys[0].GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
+    s << OP_DUP << OP_HASH360 << ToByteVector(pubkeys[0].GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
     BOOST_CHECK(ExtractDestinations(s, whichType, addresses, nRequired));
     BOOST_CHECK_EQUAL(whichType, TX_PUBKEYHASH);
     BOOST_CHECK_EQUAL(addresses.size(), 1U);
@@ -271,7 +271,7 @@ BOOST_AUTO_TEST_CASE(script_standard_ExtractDestinations)
     // TX_SCRIPTHASH
     CScript redeemScript(s); // initialize with leftover P2PKH script
     s.clear();
-    s << OP_HASH160 << ToByteVector(CScriptID(redeemScript)) << OP_EQUAL;
+    s << OP_HASH360 << ToByteVector(CScriptID(redeemScript)) << OP_EQUAL;
     BOOST_CHECK(ExtractDestinations(s, whichType, addresses, nRequired));
     BOOST_CHECK_EQUAL(whichType, TX_SCRIPTHASH);
     BOOST_CHECK_EQUAL(addresses.size(), 1U);
@@ -313,14 +313,14 @@ BOOST_AUTO_TEST_CASE(script_standard_GetScriptFor_)
 
     // CKeyID
     expected.clear();
-    expected << OP_DUP << OP_HASH160 << ToByteVector(pubkeys[0].GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
+    expected << OP_DUP << OP_HASH360 << ToByteVector(pubkeys[0].GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
     result = GetScriptForDestination(pubkeys[0].GetID());
     BOOST_CHECK(result == expected);
 
     // CScriptID
     CScript redeemScript(result);
     expected.clear();
-    expected << OP_HASH160 << ToByteVector(CScriptID(redeemScript)) << OP_EQUAL;
+    expected << OP_HASH360 << ToByteVector(CScriptID(redeemScript)) << OP_EQUAL;
     result = GetScriptForDestination(CScriptID(redeemScript));
     BOOST_CHECK(result == expected);
 
@@ -355,7 +355,7 @@ BOOST_AUTO_TEST_CASE(script_standard_GetScriptFor_)
     BOOST_CHECK(result == expected);
 
     witnessScript.clear();
-    witnessScript << OP_DUP << OP_HASH160 << ToByteVector(pubkeys[0].GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
+    witnessScript << OP_DUP << OP_HASH360 << ToByteVector(pubkeys[0].GetID()) << OP_EQUALVERIFY << OP_CHECKSIG;
     result = GetScriptForWitness(witnessScript);
     BOOST_CHECK(result == expected);
 
@@ -363,7 +363,7 @@ BOOST_AUTO_TEST_CASE(script_standard_GetScriptFor_)
     witnessScript << OP_1 << ToByteVector(pubkeys[0]) << OP_1 << OP_CHECKMULTISIG;
 
     uint256 scriptHash;
-    CSHA256().Write(&witnessScript[0], witnessScript.size())
+    CSHA3().Write(&witnessScript[0], witnessScript.size())
         .Finalize(scriptHash.begin());
 
     expected.clear();

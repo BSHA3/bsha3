@@ -315,18 +315,18 @@ public:
         CScript scriptPubKey = script;
         if (wm == WitnessMode::PKH) {
             uint160 hash;
-            CHash160().Write(&script[1], script.size() - 1).Finalize(hash.begin());
-            script = CScript() << OP_DUP << OP_HASH160 << ToByteVector(hash) << OP_EQUALVERIFY << OP_CHECKSIG;
+            CHash360().Write(&script[1], script.size() - 1).Finalize(hash.begin());
+            script = CScript() << OP_DUP << OP_HASH360 << ToByteVector(hash) << OP_EQUALVERIFY << OP_CHECKSIG;
             scriptPubKey = CScript() << witnessversion << ToByteVector(hash);
         } else if (wm == WitnessMode::SH) {
             witscript = scriptPubKey;
             uint256 hash;
-            CSHA256().Write(&witscript[0], witscript.size()).Finalize(hash.begin());
+            CSHA3().Write(&witscript[0], witscript.size()).Finalize(hash.begin());
             scriptPubKey = CScript() << witnessversion << ToByteVector(hash);
         }
         if (P2SH) {
             redeemscript = scriptPubKey;
-            scriptPubKey = CScript() << OP_HASH160 << ToByteVector(CScriptID(redeemscript)) << OP_EQUAL;
+            scriptPubKey = CScript() << OP_HASH360 << ToByteVector(CScriptID(redeemscript)) << OP_EQUAL;
         }
         creditTx = MakeTransactionRef(BuildCreditingTransaction(scriptPubKey, nValue));
         spendTx = BuildSpendingTransaction(CScript(), CScriptWitness(), *creditTx);
@@ -495,10 +495,10 @@ BOOST_AUTO_TEST_CASE(script_build)
                                 "P2PK, bad sig", 0
                                ).PushSig(keys.key0).DamagePush(10).ScriptError(SCRIPT_ERR_EVAL_FALSE));
 
-    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH160 << ToByteVector(keys.pubkey1C.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
+    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH360 << ToByteVector(keys.pubkey1C.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
                                 "P2PKH", 0
                                ).PushSig(keys.key1).Push(keys.pubkey1C));
-    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH160 << ToByteVector(keys.pubkey2C.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
+    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH360 << ToByteVector(keys.pubkey2C.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
                                 "P2PKH, bad pubkey", 0
                                ).PushSig(keys.key2).Push(keys.pubkey2C).DamagePush(5).ScriptError(SCRIPT_ERR_EQUALVERIFY));
 
@@ -516,13 +516,13 @@ BOOST_AUTO_TEST_CASE(script_build)
                                 "P2SH(P2PK), bad redeemscript", SCRIPT_VERIFY_P2SH, true
                                ).PushSig(keys.key0).PushRedeem().DamagePush(10).ScriptError(SCRIPT_ERR_EVAL_FALSE));
 
-    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH160 << ToByteVector(keys.pubkey0.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
+    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH360 << ToByteVector(keys.pubkey0.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
                                 "P2SH(P2PKH)", SCRIPT_VERIFY_P2SH, true
                                ).PushSig(keys.key0).Push(keys.pubkey0).PushRedeem());
-    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH160 << ToByteVector(keys.pubkey1.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
+    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH360 << ToByteVector(keys.pubkey1.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
                                 "P2SH(P2PKH), bad sig but no VERIFY_P2SH", 0, true
                                ).PushSig(keys.key0).DamagePush(10).PushRedeem());
-    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH160 << ToByteVector(keys.pubkey1.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
+    tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH360 << ToByteVector(keys.pubkey1.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
                                 "P2SH(P2PKH), bad sig", SCRIPT_VERIFY_P2SH, true
                                ).PushSig(keys.key0).DamagePush(10).PushRedeem().ScriptError(SCRIPT_ERR_EQUALVERIFY));
 
@@ -804,7 +804,7 @@ BOOST_AUTO_TEST_CASE(script_build)
     {
         CScript witscript = CScript() << ToByteVector(keys.pubkey0);
         uint256 hash;
-        CSHA256().Write(&witscript[0], witscript.size()).Finalize(hash.begin());
+        CSHA3().Write(&witscript[0], witscript.size()).Finalize(hash.begin());
         std::vector<unsigned char> hashBytes = ToByteVector(hash);
         hashBytes.pop_back();
         tests.push_back(TestBuilder(CScript() << OP_0 << hashBytes,

@@ -356,7 +356,7 @@ bool CWallet::AddCScript(const CScript& redeemScript)
 {
     if (!CCryptoKeyStore::AddCScript(redeemScript))
         return false;
-    return WalletBatch(*database).WriteCScript(Hash160(redeemScript), redeemScript);
+    return WalletBatch(*database).WriteCScript(Hash360(redeemScript), redeemScript);
 }
 
 bool CWallet::LoadCScript(const CScript& redeemScript)
@@ -1397,7 +1397,7 @@ CPubKey CWallet::DeriveNewSeed(const CKey& key)
 void CWallet::SetHDSeed(const CPubKey& seed)
 {
     LOCK(cs_wallet);
-    // store the keyid (hash160) together with
+    // store the keyid (hash360) together with
     // the child index counter in the database
     // as a hdchain object
     CHDChain newHdChain;

@@ -172,7 +172,7 @@ static UniValue generatetoaddress(const JSONRPCRequest& request)
         );
 
     int nGenerate = request.params[0].get_int();
-    uint64_t nMaxTries = 1000000;
+    uint64_t nMaxTries = 1000000000;
     if (!request.params[2].isNull()) {
         nMaxTries = request.params[2].get_int();
     }
@@ -492,11 +492,11 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
         // TODO: Maybe recheck connections/IBD and (if something wrong) send an expires-immediately template to stop miners?
     }
 
-    const struct VBDeploymentInfo& segwit_info = VersionBitsDeploymentInfo[Consensus::DEPLOYMENT_SEGWIT];
+    // const struct VBDeploymentInfo& segwit_info = VersionBitsDeploymentInfo[Consensus::DEPLOYMENT_SEGWIT];
     // If the caller is indicating segwit support, then allow CreateNewBlock()
     // to select witness transactions, after segwit activates (otherwise
     // don't).
-    bool fSupportsSegwit = setClientRules.find(segwit_info.name) != setClientRules.end();
+    bool fSupportsSegwit = Params().GetConsensus().nSegwitEnabled; // setClientRules.find(segwit_info.name) != setClientRules.end();
 
     // Update block
     static CBlockIndex* pindexPrev;
@@ -536,7 +536,7 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
     pblock->nNonce = 0;
 
     // NOTE: If at some point we support pre-segwit miners post-segwit-activation, this needs to take segwit support into consideration
-    const bool fPreSegWit = (ThresholdState::ACTIVE != VersionBitsState(pindexPrev, consensusParams, Consensus::DEPLOYMENT_SEGWIT, versionbitscache));
+    const bool fPreSegWit = false; // (ThresholdState::ACTIVE != VersionBitsState(pindexPrev, consensusParams, Consensus::DEPLOYMENT_SEGWIT, versionbitscache));
 
     UniValue aCaps(UniValue::VARR); aCaps.push_back("proposal");
 
@@ -961,7 +961,66 @@ static UniValue estimaterawfee(const JSONRPCRequest& request)
     return result;
 }
 
-// clang-format off
+UniValue getgenerate(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 0)
+        throw std::runtime_error(
+            "getgenerate\n"
+            "\nReturn if the server is set to generate coins or not. The default is false.\n"
+            "It is set with the command line argument -gen (or " + std::string(BITCOIN_CONF_FILENAME) + " setting gen)\n"
+            "It can also be set with the setgenerate call.\n"
+            "\nResult\n"
+            "true|false      (boolean) If the server is set to generate coins or not\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getgenerate", "")
+            + HelpExampleRpc("getgenerate", "")
+        );
+     LOCK(cs_main);
+    return gArgs.GetBoolArg("-gen", DEFAULT_GENERATE);
+}
+ UniValue setgenerate(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
+        throw std::runtime_error(
+            "setgenerate generate ( genproclimit )\n"
+            "\nSet 'generate' true or false to turn generation on or off.\n"
+            "Generation is limited to 'genproclimit' processors, -1 is unlimited.\n"
+            "See the getgenerate call for the current setting.\n"
+            "\nArguments:\n"
+            "1. generate         (boolean, required) Set to true to turn on generation, false to turn off.\n"
+            "2. genproclimit     (numeric, optional) Set the processor limit for when generation is on. Can be -1 for unlimited.\n"
+            "\nExamples:\n"
+            "\nSet the generation on with a limit of one processor\n"
+            + HelpExampleCli("setgenerate", "true 1") +
+            "\nCheck the setting\n"
+            + HelpExampleCli("getgenerate", "") +
+            "\nTurn off generation\n"
+            + HelpExampleCli("setgenerate", "false") +
+            "\nUsing json rpc\n"
+            + HelpExampleRpc("setgenerate", "true, 1")
+        );
+     if (Params().MineBlocksOnDemand())
+        throw JSONRPCError(RPC_METHOD_NOT_FOUND, "Use the generate method instead of setgenerate on this network");
+     bool fGenerate = true;
+    if (request.params.size() > 0)
+        fGenerate = request.params[0].get_bool();
+     int nGenProcLimit = gArgs.GetArg("-genproclimit", DEFAULT_GENERATE_THREADS);
+    if (request.params.size() > 1)
+    {
+        nGenProcLimit = request.params[1].get_int();
+        if (nGenProcLimit == 0)
+            fGenerate = false;
+    }
+    gArgs.SoftSetArg("-gen", (fGenerate ? "1" : "0"));
+    gArgs.SoftSetArg("-genproclimit", itostr(nGenProcLimit));
+    //mapArgs["-gen"] = (fGenerate ? "1" : "0");
+    //mapArgs ["-genproclimit"] = itostr(nGenProcLimit);
+    int numCores = GenerateBSHA3s(fGenerate, nGenProcLimit, Params());
+     nGenProcLimit = nGenProcLimit >= 0 ? nGenProcLimit : numCores;
+    std::string msg = std::to_string(nGenProcLimit) + " of " + std::to_string(numCores);
+    return msg;
+}
+
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         argNames
   //  --------------------- ------------------------  -----------------------  ----------
@@ -972,6 +1031,8 @@ static const CRPCCommand commands[] =
     { "mining",             "submitblock",            &submitblock,            {"hexdata","dummy"} },
     { "mining",             "submitheader",           &submitheader,           {"hexdata"} },
 
+    { "generating",         "getgenerate",            &getgenerate,            {}  },
+    { "generating",         "setgenerate",            &setgenerate,            {"generate", "genproclimit"}  },
 
     { "generating",         "generatetoaddress",      &generatetoaddress,      {"nblocks","address","maxtries"} },
 

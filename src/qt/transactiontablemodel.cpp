@@ -69,7 +69,7 @@ public:
 
     /* Local cache of wallet.
      * As it is in the same order as the CWallet, by definition
-     * this is sorted by sha256.
+     * this is sorted by sha3.
      */
     QList<TransactionRecord> cachedWallet;
 

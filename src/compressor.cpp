@@ -19,7 +19,7 @@
 
 static bool IsToKeyID(const CScript& script, CKeyID &hash)
 {
-    if (script.size() == 25 && script[0] == OP_DUP && script[1] == OP_HASH160
+    if (script.size() == 25 && script[0] == OP_DUP && script[1] == OP_HASH360
                             && script[2] == 20 && script[23] == OP_EQUALVERIFY
                             && script[24] == OP_CHECKSIG) {
         memcpy(&hash, &script[3], 20);
@@ -30,7 +30,7 @@ static bool IsToKeyID(const CScript& script, CKeyID &hash)
 
 static bool IsToScriptID(const CScript& script, CScriptID &hash)
 {
-    if (script.size() == 23 && script[0] == OP_HASH160 && script[1] == 20
+    if (script.size() == 23 && script[0] == OP_HASH360 && script[1] == 20
                             && script[22] == OP_EQUAL) {
         memcpy(&hash, &script[2], 20);
         return true;
@@ -99,7 +99,7 @@ bool DecompressScript(CScript& script, unsigned int nSize, const std::vector<uns
     case 0x00:
         script.resize(25);
         script[0] = OP_DUP;
-        script[1] = OP_HASH160;
+        script[1] = OP_HASH360;
         script[2] = 20;
         memcpy(&script[3], in.data(), 20);
         script[23] = OP_EQUALVERIFY;
@@ -107,7 +107,7 @@ bool DecompressScript(CScript& script, unsigned int nSize, const std::vector<uns
         return true;
     case 0x01:
         script.resize(23);
-        script[0] = OP_HASH160;
+        script[0] = OP_HASH360;
         script[1] = 20;
         memcpy(&script[2], in.data(), 20);
         script[22] = OP_EQUAL;

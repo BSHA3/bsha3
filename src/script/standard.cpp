@@ -17,11 +17,11 @@ typedef std::vector<unsigned char> valtype;
 bool fAcceptDatacarrier = DEFAULT_ACCEPT_DATACARRIER;
 unsigned nMaxDatacarrierBytes = MAX_OP_RETURN_RELAY;
 
-CScriptID::CScriptID(const CScript& in) : uint160(Hash160(in.begin(), in.end())) {}
+CScriptID::CScriptID(const CScript& in) : uint160(Hash360(in.begin(), in.end())) {}
 
 WitnessV0ScriptHash::WitnessV0ScriptHash(const CScript& in)
 {
-    CSHA256().Write(in.data(), in.size()).Finalize(begin());
+    CSHA3().Write(in.data(), in.size()).Finalize(begin());
 }
 
 const char* GetTxnOutputType(txnouttype t)
@@ -56,7 +56,7 @@ static bool MatchPayToPubkey(const CScript& script, valtype& pubkey)
 
 static bool MatchPayToPubkeyHash(const CScript& script, valtype& pubkeyhash)
 {
-    if (script.size() == 25 && script[0] == OP_DUP && script[1] == OP_HASH160 && script[2] == 20 && script[23] == OP_EQUALVERIFY && script[24] == OP_CHECKSIG) {
+    if (script.size() == 25 && script[0] == OP_DUP && script[1] == OP_HASH360 && script[2] == 20 && script[23] == OP_EQUALVERIFY && script[24] == OP_CHECKSIG) {
         pubkeyhash = valtype(script.begin () + 3, script.begin() + 23);
         return true;
     }
@@ -92,7 +92,7 @@ txnouttype Solver(const CScript& scriptPubKey, std::vector<std::vector<unsigned 
     vSolutionsRet.clear();
 
     // Shortcut for pay-to-script-hash, which are more constrained than the other types:
-    // it is always OP_HASH160 20 [20 byte hash] OP_EQUAL
+    // it is always OP_HASH360 20 [20 byte hash] OP_EQUAL
     if (scriptPubKey.IsPayToScriptHash())
     {
         std::vector<unsigned char> hashBytes(scriptPubKey.begin()+2, scriptPubKey.begin()+22);
@@ -252,13 +252,13 @@ public:
 
     bool operator()(const CKeyID &keyID) const {
         script->clear();
-        *script << OP_DUP << OP_HASH160 << ToByteVector(keyID) << OP_EQUALVERIFY << OP_CHECKSIG;
+        *script << OP_DUP << OP_HASH360 << ToByteVector(keyID) << OP_EQUALVERIFY << OP_CHECKSIG;
         return true;
     }
 
     bool operator()(const CScriptID &scriptID) const {
         script->clear();
-        *script << OP_HASH160 << ToByteVector(scriptID) << OP_EQUAL;
+        *script << OP_HASH360 << ToByteVector(scriptID) << OP_EQUAL;
         return true;
     }
 
@@ -314,7 +314,7 @@ CScript GetScriptForWitness(const CScript& redeemscript)
     std::vector<std::vector<unsigned char> > vSolutions;
     txnouttype typ = Solver(redeemscript, vSolutions);
     if (typ == TX_PUBKEY) {
-        return GetScriptForDestination(WitnessV0KeyHash(Hash160(vSolutions[0].begin(), vSolutions[0].end())));
+        return GetScriptForDestination(WitnessV0KeyHash(Hash360(vSolutions[0].begin(), vSolutions[0].end())));
     } else if (typ == TX_PUBKEYHASH) {
         return GetScriptForDestination(WitnessV0KeyHash(vSolutions[0]));
     }

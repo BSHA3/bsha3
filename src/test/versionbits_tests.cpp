@@ -347,7 +347,7 @@ BOOST_AUTO_TEST_CASE(versionbits_computeblockversion)
 
     // Finally, verify that after a soft fork has activated, CBV no longer uses
     // VERSIONBITS_LAST_OLD_BLOCK_VERSION.
-    //BOOST_CHECK_EQUAL(ComputeBlockVersion(lastBlock, mainnetParams) & VERSIONBITS_TOP_MASK, VERSIONBITS_TOP_BITS);
+    BOOST_CHECK_EQUAL(ComputeBlockVersion(lastBlock, mainnetParams) & VERSIONBITS_TOP_MASK, VERSIONBITS_TOP_BITS);
 }
 
 

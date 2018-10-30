@@ -11,8 +11,8 @@
 static const unsigned char pchIPv4[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff };
 static const unsigned char pchOnionCat[] = {0xFD,0x87,0xD8,0x7E,0xEB,0x43};
 
-// 0xFD + sha256("bitcoin")[0:5]
-static const unsigned char g_internal_prefix[] = { 0xFD, 0x6B, 0x88, 0xC0, 0x87, 0x24 };
+// 0xFD + sha3("bitcoin")[0:5]
+static const unsigned char g_internal_prefix[] = { 0xFD, 0xF8, 0x2F, 0x54, 0xFE, 0x3A };
 
 CNetAddr::CNetAddr()
 {
@@ -47,7 +47,7 @@ bool CNetAddr::SetInternal(const std::string &name)
         return false;
     }
     unsigned char hash[32] = {};
-    CSHA256().Write((const unsigned char*)name.data(), name.size()).Finalize(hash);
+    CSHA3().Write((const unsigned char*)name.data(), name.size()).Finalize(hash);
     memcpy(ip, g_internal_prefix, sizeof(g_internal_prefix));
     memcpy(ip + sizeof(g_internal_prefix), hash, sizeof(ip) - sizeof(g_internal_prefix));
     return true;

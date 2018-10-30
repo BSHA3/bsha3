@@ -1464,7 +1464,8 @@ bool static ProcessHeadersMessage(CNode *pfrom, CConnman *connman, const std::ve
         }
         nodestate->nUnconnectingHeaders = 0;
 
-        assert(pindexLast);
+        //assert(pindexLast);
+        if (!pindexLast) return true;
         UpdateBlockAvailability(pfrom->GetId(), pindexLast->GetBlockHash());
 
         // From here, pindexBestKnownBlock should be guaranteed to be non-null,

@@ -580,7 +580,7 @@ public:
 
 class CNetMessage {
 private:
-    mutable CHash256 hasher;
+    mutable CHash3 hasher;
     mutable uint256 data_hash;
 public:
     bool in_data;                   // parsing header (false) or data (true)

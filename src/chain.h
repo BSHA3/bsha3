@@ -419,7 +419,6 @@ public:
         return block.GetHash();
     }
 
-
     std::string ToString() const
     {
         std::string str = "CDiskBlockIndex(";

@@ -7,7 +7,7 @@
 
 #include <arith_uint256.h>
 #include <crypto/common.h>
-#include <crypto/hmac_sha512.h>
+#include <crypto/hmac_sha3512.h>
 #include <random.h>
 
 #include <secp256k1.h>
@@ -232,7 +232,7 @@ bool CKey::VerifyPubKey(const CPubKey& pubkey) const {
     std::string str = "Bitcoin key verification\n";
     GetRandBytes(rnd, sizeof(rnd));
     uint256 hash;
-    CHash256().Write((unsigned char*)str.data(), str.size()).Write(rnd, sizeof(rnd)).Finalize(hash.begin());
+    CHash3().Write((unsigned char*)str.data(), str.size()).Write(rnd, sizeof(rnd)).Finalize(hash.begin());
     std::vector<unsigned char> vchSig;
     Sign(hash, vchSig);
     return pubkey.Verify(hash, vchSig);
@@ -296,7 +296,7 @@ bool CExtKey::Derive(CExtKey &out, unsigned int _nChild) const {
 void CExtKey::SetSeed(const unsigned char *seed, unsigned int nSeedLen) {
     static const unsigned char hashkey[] = {'B','i','t','c','o','i','n',' ','s','e','e','d'};
     std::vector<unsigned char, secure_allocator<unsigned char>> vout(64);
-    CHMAC_SHA512(hashkey, sizeof(hashkey)).Write(seed, nSeedLen).Finalize(vout.data());
+    CHMAC_SHA3512(hashkey, sizeof(hashkey)).Write(seed, nSeedLen).Finalize(vout.data());
     key.Set(vout.data(), vout.data() + 32, true);
     memcpy(chaincode.begin(), vout.data() + 32, 32);
     nDepth = 0;

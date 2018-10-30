@@ -73,8 +73,9 @@ enum BindFlags {
 
 const static std::string NET_MESSAGE_COMMAND_OTHER = "*other*";
 
-static const uint64_t RANDOMIZER_ID_NETGROUP = 0x6c0edd8036ef4036ULL; // SHA256("netgroup")[0:8]
-static const uint64_t RANDOMIZER_ID_LOCALHOSTNONCE = 0xd93e69e2bbfa5735ULL; // SHA256("localhostnonce")[0:8]
+static const uint64_t RANDOMIZER_ID_NETGROUP = 0xabb2b5f9a692e3aaULL; // SHA3-256("netgroup")[0:8]
+static const uint64_t RANDOMIZER_ID_LOCALHOSTNONCE = 0xe42e8de9f9a5d4d6ULL; // SHA3-256("localhostnonce")[0:8]
+
 //
 // Global state variables
 //
@@ -1537,7 +1538,7 @@ static void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "Bitcoin " + FormatFullVersion();
+        std::string strDesc = "BSHA3 " + FormatFullVersion();
 
         do {
 #ifndef UPNPDISCOVER_SUCCESS
@@ -2300,7 +2301,11 @@ bool CConnman::Start(CScheduler& scheduler, const Options& connOptions)
         return false;
     }
 
+    LogPrintf("Connection Manager: Adding Seed Nodes\n");
+
     for (const auto& strDest : connOptions.vSeedNodes) {
+        LogPrintf("Connection Manager: Adding Seed Node: %s\n", strDest);
+
         AddOneShot(strDest);
     }
 

@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(sign)
     LOCK(cs_main);
     // Pay-to-script-hash looks like this:
     // scriptSig:    <sig> <sig...> <serialized_script>
-    // scriptPubKey: HASH160 <hash> EQUAL
+    // scriptPubKey: HASH360 <hash> EQUAL
 
     // Test SignSignature() (and therefore the version of Solver() that signs transactions)
     CBasicKeyStore keystore;
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE(norecurse)
     BOOST_CHECK_MESSAGE(err == SCRIPT_ERR_BAD_OPCODE, ScriptErrorString(err));
 
     // Try to recur, and verification should succeed because
-    // the inner HASH160 <> EQUAL should only check the hash:
+    // the inner HASH360 <> EQUAL should only check the hash:
     CScript p2sh2 = GetScriptForDestination(CScriptID(p2sh));
     CScript scriptSig2;
     scriptSig2 << Serialize(invalidAsScript) << Serialize(p2sh);
@@ -209,29 +209,29 @@ BOOST_AUTO_TEST_CASE(is)
     // Test CScript::IsPayToScriptHash()
     uint160 dummy;
     CScript p2sh;
-    p2sh << OP_HASH160 << ToByteVector(dummy) << OP_EQUAL;
+    p2sh << OP_HASH360 << ToByteVector(dummy) << OP_EQUAL;
     BOOST_CHECK(p2sh.IsPayToScriptHash());
 
     // Not considered pay-to-script-hash if using one of the OP_PUSHDATA opcodes:
-    static const unsigned char direct[] =    { OP_HASH160, 20, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, OP_EQUAL };
+    static const unsigned char direct[] =    { OP_HASH360, 20, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, OP_EQUAL };
     BOOST_CHECK(CScript(direct, direct+sizeof(direct)).IsPayToScriptHash());
-    static const unsigned char pushdata1[] = { OP_HASH160, OP_PUSHDATA1, 20, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, OP_EQUAL };
+    static const unsigned char pushdata1[] = { OP_HASH360, OP_PUSHDATA1, 20, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, OP_EQUAL };
     BOOST_CHECK(!CScript(pushdata1, pushdata1+sizeof(pushdata1)).IsPayToScriptHash());
-    static const unsigned char pushdata2[] = { OP_HASH160, OP_PUSHDATA2, 20,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, OP_EQUAL };
+    static const unsigned char pushdata2[] = { OP_HASH360, OP_PUSHDATA2, 20,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, OP_EQUAL };
     BOOST_CHECK(!CScript(pushdata2, pushdata2+sizeof(pushdata2)).IsPayToScriptHash());
-    static const unsigned char pushdata4[] = { OP_HASH160, OP_PUSHDATA4, 20,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, OP_EQUAL };
+    static const unsigned char pushdata4[] = { OP_HASH360, OP_PUSHDATA4, 20,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, OP_EQUAL };
     BOOST_CHECK(!CScript(pushdata4, pushdata4+sizeof(pushdata4)).IsPayToScriptHash());
 
     CScript not_p2sh;
     BOOST_CHECK(!not_p2sh.IsPayToScriptHash());
 
-    not_p2sh.clear(); not_p2sh << OP_HASH160 << ToByteVector(dummy) << ToByteVector(dummy) << OP_EQUAL;
+    not_p2sh.clear(); not_p2sh << OP_HASH360 << ToByteVector(dummy) << ToByteVector(dummy) << OP_EQUAL;
     BOOST_CHECK(!not_p2sh.IsPayToScriptHash());
 
     not_p2sh.clear(); not_p2sh << OP_NOP << ToByteVector(dummy) << OP_EQUAL;
     BOOST_CHECK(!not_p2sh.IsPayToScriptHash());
 
-    not_p2sh.clear(); not_p2sh << OP_HASH160 << ToByteVector(dummy) << OP_CHECKSIG;
+    not_p2sh.clear(); not_p2sh << OP_HASH360 << ToByteVector(dummy) << OP_CHECKSIG;
     BOOST_CHECK(!not_p2sh.IsPayToScriptHash());
 }
 

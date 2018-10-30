@@ -876,26 +876,26 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 // Crypto
                 //
                 case OP_RIPEMD160:
-                case OP_SHA1:
+                case OP_SHA3:
                 case OP_SHA256:
-                case OP_HASH160:
-                case OP_HASH256:
+                case OP_HASH360:
+                case OP_HASH3:
                 {
                     // (in -- hash)
                     if (stack.size() < 1)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
                     valtype& vch = stacktop(-1);
-                    valtype vchHash((opcode == OP_RIPEMD160 || opcode == OP_SHA1 || opcode == OP_HASH160) ? 20 : 32);
+                    valtype vchHash((opcode == OP_RIPEMD160 || opcode == OP_HASH360) ? 20 : 32);
                     if (opcode == OP_RIPEMD160)
                         CRIPEMD160().Write(vch.data(), vch.size()).Finalize(vchHash.data());
-                    else if (opcode == OP_SHA1)
-                        CSHA1().Write(vch.data(), vch.size()).Finalize(vchHash.data());
+                    else if (opcode == OP_SHA3)
+                        CSHA3().Write(vch.data(), vch.size()).Finalize(vchHash.data());
                     else if (opcode == OP_SHA256)
                         CSHA256().Write(vch.data(), vch.size()).Finalize(vchHash.data());
-                    else if (opcode == OP_HASH160)
-                        CHash160().Write(vch.data(), vch.size()).Finalize(vchHash.data());
-                    else if (opcode == OP_HASH256)
-                        CHash256().Write(vch.data(), vch.size()).Finalize(vchHash.data());
+                    else if (opcode == OP_HASH360)
+                        CHash360().Write(vch.data(), vch.size()).Finalize(vchHash.data());
+                    else if (opcode == OP_HASH3)
+                        CHash3().Write(vch.data(), vch.size()).Finalize(vchHash.data());
                     popstack(stack);
                     stack.push_back(vchHash);
                 }
@@ -1423,14 +1423,14 @@ static bool VerifyWitnessProgram(const CScriptWitness& witness, int witversion, 
 
     if (witversion == 0) {
         if (program.size() == WITNESS_V0_SCRIPTHASH_SIZE) {
-            // Version 0 segregated witness program: SHA256(CScript) inside the program, CScript + inputs in witness
+            // Version 0 segregated witness program: SHA3(CScript) inside the program, CScript + inputs in witness
             if (witness.stack.size() == 0) {
                 return set_error(serror, SCRIPT_ERR_WITNESS_PROGRAM_WITNESS_EMPTY);
             }
             scriptPubKey = CScript(witness.stack.back().begin(), witness.stack.back().end());
             stack = std::vector<std::vector<unsigned char> >(witness.stack.begin(), witness.stack.end() - 1);
             uint256 hashScriptPubKey;
-            CSHA256().Write(&scriptPubKey[0], scriptPubKey.size()).Finalize(hashScriptPubKey.begin());
+            CSHA3().Write(&scriptPubKey[0], scriptPubKey.size()).Finalize(hashScriptPubKey.begin());
             if (memcmp(hashScriptPubKey.begin(), program.data(), 32)) {
                 return set_error(serror, SCRIPT_ERR_WITNESS_PROGRAM_MISMATCH);
             }
@@ -1439,7 +1439,7 @@ static bool VerifyWitnessProgram(const CScriptWitness& witness, int witversion, 
             if (witness.stack.size() != 2) {
                 return set_error(serror, SCRIPT_ERR_WITNESS_PROGRAM_MISMATCH); // 2 items in witness
             }
-            scriptPubKey << OP_DUP << OP_HASH160 << program << OP_EQUALVERIFY << OP_CHECKSIG;
+            scriptPubKey << OP_DUP << OP_HASH360 << program << OP_EQUALVERIFY << OP_CHECKSIG;
             stack = witness.stack;
         } else {
             return set_error(serror, SCRIPT_ERR_WITNESS_PROGRAM_WRONG_LENGTH);

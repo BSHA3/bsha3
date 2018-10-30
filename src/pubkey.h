@@ -16,7 +16,7 @@
 
 const unsigned int BIP32_EXTKEY_SIZE = 74;
 
-/** A reference to a CKey: the Hash160 of its serialized public key */
+/** A reference to a CKey: the Hash360 of its serialized public key */
 class CKeyID : public uint160
 {
 public:
@@ -154,7 +154,7 @@ public:
     //! Get the KeyID of this public key (hash of its serialization)
     CKeyID GetID() const
     {
-        return CKeyID(Hash160(vch, vch + size()));
+        return CKeyID(Hash360(vch, vch + size()));
     }
 
     //! Get the 256-bit hash of this public key.

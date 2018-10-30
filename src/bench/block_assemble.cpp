@@ -59,7 +59,7 @@ static void AssembleBlock(benchmark::State& state)
     witness.stack.push_back(op_true);
 
     uint256 witness_program;
-    CSHA256().Write(&op_true[0], op_true.size()).Finalize(witness_program.begin());
+    CSHA3().Write(&op_true[0], op_true.size()).Finalize(witness_program.begin());
 
     const CScript SCRIPT_PUB{CScript(OP_0) << std::vector<unsigned char>{witness_program.begin(), witness_program.end()}};
 

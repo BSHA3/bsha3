@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(blockfilter_basic_test)
 
     // First two are outputs on a single transaction.
     included_scripts[0] << std::vector<unsigned char>(0, 65) << OP_CHECKSIG;
-    included_scripts[1] << OP_DUP << OP_HASH160 << std::vector<unsigned char>(1, 20) << OP_EQUALVERIFY << OP_CHECKSIG;
+    included_scripts[1] << OP_DUP << OP_HASH360 << std::vector<unsigned char>(1, 20) << OP_EQUALVERIFY << OP_CHECKSIG;
 
     // Third is an output on in a second transaction.
     included_scripts[2] << OP_1 << std::vector<unsigned char>(2, 33) << OP_1 << OP_CHECKMULTISIG;

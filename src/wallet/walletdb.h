@@ -60,7 +60,7 @@ class CHDChain
 public:
     uint32_t nExternalChainCounter;
     uint32_t nInternalChainCounter;
-    CKeyID seed_id; //!< seed hash160
+    CKeyID seed_id; //!< seed hash360
 
     static const int VERSION_HD_BASE        = 1;
     static const int VERSION_HD_CHAIN_SPLIT = 2;

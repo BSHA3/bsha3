@@ -26,7 +26,7 @@ const unsigned int WALLET_CRYPTO_IV_SIZE = 16;
  * which may require more parameters (such as scrypt).
  *
  * Wallet Private Keys are then encrypted using AES-256-CBC
- * with the double-sha256 of the public key as the IV, and the
+ * with the double-sha3 of the public key as the IV, and the
  * master key's key as the encryption key (see keystore.[ch]).
  */
 

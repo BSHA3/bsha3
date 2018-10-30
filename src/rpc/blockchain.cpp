@@ -61,7 +61,10 @@ double GetDifficulty(const CBlockIndex* blockindex)
 {
     if (blockindex == nullptr)
     {
-        return 1.0;
+        if (chainActive.Tip() == nullptr)
+            return 1.0;
+        else
+            blockindex = chainActive.Tip();
     }
 
     int nShift = (blockindex->nBits >> 24) & 0xff;
@@ -1119,6 +1122,7 @@ static UniValue verifychain(const JSONRPCRequest& request)
 }
 
 /** Implementation of IsSuperMajority with better feedback */
+/*
 static UniValue SoftForkMajorityDesc(int version, CBlockIndex* pindex, const Consensus::Params& consensusParams)
 {
     UniValue rv(UniValue::VOBJ);
@@ -1147,6 +1151,7 @@ static UniValue SoftForkDesc(const std::string &name, int version, CBlockIndex* 
     rv.pushKV("reject", SoftForkMajorityDesc(version, pindex, consensusParams));
     return rv;
 }
+*/
 
 static UniValue BIP9SoftForkDesc(const Consensus::Params& consensusParams, Consensus::DeploymentPos id)
 {
@@ -1278,12 +1283,14 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
     CBlockIndex* tip = chainActive.Tip();
     UniValue softforks(UniValue::VARR);
     UniValue bip9_softforks(UniValue::VOBJ);
-    softforks.push_back(SoftForkDesc("bip34", 2, tip, consensusParams));
-    softforks.push_back(SoftForkDesc("bip66", 3, tip, consensusParams));
-    softforks.push_back(SoftForkDesc("bip65", 4, tip, consensusParams));
+    //softforks.push_back(SoftForkDesc("bip34", 2, tip, consensusParams));
+    //softforks.push_back(SoftForkDesc("bip66", 3, tip, consensusParams));
+    //softforks.push_back(SoftForkDesc("bip65", 4, tip, consensusParams));
+    /*
     for (int pos = Consensus::DEPLOYMENT_CSV; pos != Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++pos) {
         BIP9SoftForkDescPushBack(bip9_softforks, consensusParams, static_cast<Consensus::DeploymentPos>(pos));
     }
+    */
     obj.pushKV("softforks",             softforks);
     obj.pushKV("bip9_softforks", bip9_softforks);
 

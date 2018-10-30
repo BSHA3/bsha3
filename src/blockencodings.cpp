@@ -30,7 +30,7 @@ CBlockHeaderAndShortTxIDs::CBlockHeaderAndShortTxIDs(const CBlock& block, bool f
 void CBlockHeaderAndShortTxIDs::FillShortTxIDSelector() const {
     CDataStream stream(SER_NETWORK, PROTOCOL_VERSION);
     stream << header << nonce;
-    CSHA256 hasher;
+    CSHA3 hasher;
     hasher.Write((unsigned char*)&(*stream.begin()), stream.end() - stream.begin());
     uint256 shorttxidhash;
     hasher.Finalize(shorttxidhash.begin());

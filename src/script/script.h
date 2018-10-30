@@ -157,10 +157,10 @@ enum opcodetype
 
     // crypto
     OP_RIPEMD160 = 0xa6,
-    OP_SHA1 = 0xa7,
+    OP_SHA3 = 0xa7, // Note: 0xa7 is OP_SHA1 in Bitcoin
     OP_SHA256 = 0xa8,
-    OP_HASH160 = 0xa9,
-    OP_HASH256 = 0xaa,
+    OP_HASH360 = 0xa9, // Note: 0xa7 is OP_HASH160 in Bitcoin
+    OP_HASH3 = 0xaa, // Note: 0xaa is OP_HASH in Bitcoin
     OP_CODESEPARATOR = 0xab,
     OP_CHECKSIG = 0xac,
     OP_CHECKSIGVERIFY = 0xad,

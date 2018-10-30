@@ -66,12 +66,12 @@ static void VerifyScriptBench(benchmark::State& state)
     key.Set(vchKey.begin(), vchKey.end(), false);
     CPubKey pubkey = key.GetPubKey();
     uint160 pubkeyHash;
-    CHash160().Write(pubkey.begin(), pubkey.size()).Finalize(pubkeyHash.begin());
+    CHash360().Write(pubkey.begin(), pubkey.size()).Finalize(pubkeyHash.begin());
 
     // Script.
     CScript scriptPubKey = CScript() << witnessversion << ToByteVector(pubkeyHash);
     CScript scriptSig;
-    CScript witScriptPubkey = CScript() << OP_DUP << OP_HASH160 << ToByteVector(pubkeyHash) << OP_EQUALVERIFY << OP_CHECKSIG;
+    CScript witScriptPubkey = CScript() << OP_DUP << OP_HASH360 << ToByteVector(pubkeyHash) << OP_EQUALVERIFY << OP_CHECKSIG;
     const CMutableTransaction& txCredit = BuildCreditingTransaction(scriptPubKey);
     CMutableTransaction txSpend = BuildSpendingTransaction(scriptSig, txCredit);
     CScriptWitness& witness = txSpend.vin[0].scriptWitness;
