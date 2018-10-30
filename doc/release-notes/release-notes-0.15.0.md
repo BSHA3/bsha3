@@ -148,11 +148,11 @@ Multi-wallet is enabled by using more than one `-wallet` argument when starting 
 
 **In Bitcoin-Qt, only the first wallet will be displayed and accessible for creating and signing transactions.** GUI selectable multiple wallets will be supported in a future version. However, even in 0.15 other loaded wallets will remain synchronized to the node's current tip in the background. This can be useful if running a pruned node, since loading a wallet where the most recent sync is beyond the pruned height results in having to download and revalidate the whole blockchain. Continuing to synchronize all wallets in the background avoids this problem.
 
-Bitcoin Core 0.15.0 contains the following changes to the RPC interface and `bitcoin-cli` for multi-wallet:
+Bitcoin Core 0.15.0 contains the following changes to the RPC interface and `bsha3-cli` for multi-wallet:
 
-* When running Bitcoin Core with a single wallet, there are **no** changes to the RPC interface or `bitcoin-cli`. All RPC calls and `bitcoin-cli` commands continue to work as before.
-* When running Bitcoin Core with multi-wallet, all *node-level* RPC methods continue to work as before. HTTP RPC requests should be send to the normal `<RPC IP address>:<RPC port>` endpoint, and `bitcoin-cli` commands should be run as before. A *node-level* RPC method is any method which does not require access to the wallet.
-* When running Bitcoin Core with multi-wallet, *wallet-level* RPC methods must specify the wallet for which they're intended in every request. HTTP RPC requests should be send to the `<RPC IP address>:<RPC port>/wallet/<wallet name>` endpoint, for example `127.0.0.1:8334/wallet/wallet1.dat`. `bitcoin-cli` commands should be run with a `-rpcwallet` option, for example `bitcoin-cli -rpcwallet=wallet1.dat getbalance`.
+* When running Bitcoin Core with a single wallet, there are **no** changes to the RPC interface or `bsha3-cli`. All RPC calls and `bsha3-cli` commands continue to work as before.
+* When running Bitcoin Core with multi-wallet, all *node-level* RPC methods continue to work as before. HTTP RPC requests should be send to the normal `<RPC IP address>:<RPC port>` endpoint, and `bsha3-cli` commands should be run as before. A *node-level* RPC method is any method which does not require access to the wallet.
+* When running Bitcoin Core with multi-wallet, *wallet-level* RPC methods must specify the wallet for which they're intended in every request. HTTP RPC requests should be send to the `<RPC IP address>:<RPC port>/wallet/<wallet name>` endpoint, for example `127.0.0.1:8334/wallet/wallet1.dat`. `bsha3-cli` commands should be run with a `-rpcwallet` option, for example `bsha3-cli -rpcwallet=wallet1.dat getbalance`.
 * A new *node-level* `listwallets` RPC method is added to display which wallets are currently loaded. The names returned by this method are the same as those used in the HTTP endpoint and for the `rpcwallet` argument.
 
 Note that while multi-wallet is now fully supported, the RPC multi-wallet interface should be considered unstable for version 0.15.0, and there may backwards-incompatible changes in future versions.
@@ -341,7 +341,7 @@ Low-level RPC changes
 - #10400 `1680ee0` [RPC] Add an uptime command that displays the amount of time (in seconds) bsha3d has been running (rvelhote)
 - #10683 `d81bec7` rpc: Move the `generate` RPC call to rpcwallet (laanwj)
 - #10710 `30bc0f6` REST/RPC example update (Mirobit)
-- #10747 `9edda0c` [rpc] fix verbose argument for getblock in bitcoin-cli (jnewbery)
+- #10747 `9edda0c` [rpc] fix verbose argument for getblock in bsha3-cli (jnewbery)
 - #10589 `104f5f2` More economical fee estimates for RBF and RPC options to control (morcos)
 - #10543 `b27b004` Change API to estimaterawfee (morcos)
 - #10807 `afd2fca` getbalance example covers at least 6 confirms (instagibbs)
@@ -742,7 +742,7 @@ Low-level RPC changes
 - #10676 `379aed0` document script-based return fields for validateaddress (instagibbs)
 - #10651 `cef4b5c` Verify binaries from bitcoincore.org and bitcoin.org (TheBlueMatt)
 - #10786 `ca4c545` Add PR description to merge commit in github-merge.py (sipa)
-- #10812 `c5904e8` [utils] Allow bitcoin-cli's -rpcconnect option to be used with square brackets (jnewbery)
+- #10812 `c5904e8` [utils] Allow bsha3-cli's -rpcconnect option to be used with square brackets (jnewbery)
 - #10842 `3895e25` Fix incorrect Doxygen tag (@ince → @since). Doxygen parameter name matching (practicalswift)
 - #10681 `df0793f` add gdb attach process to test README (instagibbs)
 - #10789 `1124328` Punctuation/grammer fixes in rpcwallet.cpp (stevendlander)

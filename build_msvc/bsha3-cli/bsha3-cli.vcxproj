@@ -20,7 +20,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\bitcoin-cli.cpp" />
+    <ClCompile Include="..\..\src\bsha3-cli.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -9,7 +9,7 @@ if ENABLE_QT
 endif
 
 if BUILD_BITCOIN_CLI
-  dist_man1_MANS+=bitcoin-cli.1
+  dist_man1_MANS+=bsha3-cli.1
 endif
 
 if BUILD_BITCOIN_TX

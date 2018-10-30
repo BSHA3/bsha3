@@ -392,7 +392,7 @@ git merge commit are mentioned.
 - #5366 `47a79bb` No longer check osx compatibility in RenameThread
 - #5689 `07f4386` openssl: abstract out OPENSSL_cleanse
 - #5708 `8b298ca` Add list of implemented BIPs
-- #5809 `46bfbe7` Add bitcoin-cli man page
+- #5809 `46bfbe7` Add bsha3-cli man page
 - #5839 `86eb461` keys: remove libsecp256k1 verification until it's actually supported
 - #5749 `d734d87` Help messages correctly formatted (79 chars)
 - #5884 `7077fe6` BUGFIX: Stack around the variable 'rv' was corrupted

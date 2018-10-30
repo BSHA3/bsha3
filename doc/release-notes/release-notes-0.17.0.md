@@ -810,7 +810,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #12659 `3d16f58` Improve Fatal LevelDB Log Messages (eklitzke)
 - #12643 `0f0229d` util: Remove unused `sync_chain` (MarcoFalke)
 - #12102 `7fb8fb4` Apply hardening measures in bsha3d systemd service file (Flowdalic)
-- #12652 `55f490a` bitcoin-cli: Provide a better error message when bsha3d is not running (practicalswift)
+- #12652 `55f490a` bsha3-cli: Provide a better error message when bsha3d is not running (practicalswift)
 - #12630 `c290508` Provide useful error message if datadir is not writable (murrayn)
 - #11881 `624bee9` Remove Python2 support (jnewbery)
 - #12821 `082e26c` contrib: Remove unused import string (MarcoFalke)
@@ -872,7 +872,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13441 `4a7e64f` Prevent shared conf files from failing with different available options in different binaries (achow101)
 - #13471 `5eca4e8` For AVX2 code, also check for AVX, XSAVE, and OS support (sipa)
 - #13503 `c655b2c` Document FreeBSD quirk. Fix FreeBSD build: Use std::min<int>(…) to allow for compilation under certain FreeBSD versions (practicalswift)
-- #13725 `07ce278` Fix bitcoin-cli --version (Empact)
+- #13725 `07ce278` Fix bsha3-cli --version (Empact)
 
 ### Documentation
 - #12306 `216f9a4` Improvements to UNIX documentation (axvr)
@@ -948,7 +948,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13895 `1cd5f2c` fix GetWarnings docs to reflect behavior (Empact)
 - #13911 `3e3a50a` Revert translated string change, clarify wallet log messages (PierreRochard)
 - #13908 `d6faea4` upgrade rescan time warning from minutes to >1 hour (masonicboom)
-- #13905 `73a09b4` fixed bitcoin-cli -help output for help2man (hebasto)
+- #13905 `73a09b4` fixed bsha3-cli -help output for help2man (hebasto)
 - #14100 `2936dbc` Change documentation for =0 for non-boolean options (laanwj)
 - #14096 `465a583` Add reference documentation for descriptors language (sipa)
 - #12757 `0c5f67b` Clarify include guard naming convention (practicalswift)

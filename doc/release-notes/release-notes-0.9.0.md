@@ -97,7 +97,7 @@ Bitcoin-cli
 Another change in the 0.9 release is moving away from the bsha3d executable
 functioning both as a server and as a RPC client. The RPC client functionality
 ("tell the running bitcoin daemon to do THIS") was split into a separate
-executable, 'bitcoin-cli'. The RPC client code will eventually be removed from
+executable, 'bsha3-cli'. The RPC client code will eventually be removed from
 bsha3d, but will be kept for backwards compatibility for a release or two.
 
 `walletpassphrase` RPC
@@ -314,7 +314,7 @@ Miscellaneous:
 - Add '-regtest' mode, similar to testnet but private with instant block
   generation with 'setgenerate' RPC.
 - Add 'linearize.py' script to contrib, for creating bootstrap.dat
-- Add separate bitcoin-cli client
+- Add separate bsha3-cli client
 
 Credits
 --------

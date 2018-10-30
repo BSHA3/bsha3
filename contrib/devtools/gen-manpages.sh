@@ -8,7 +8,7 @@ BINDIR=${BINDIR:-$BUILDDIR/src}
 MANDIR=${MANDIR:-$TOPDIR/doc/man}
 
 BITCOIND=${BITCOIND:-$BINDIR/bsha3d}
-BITCOINCLI=${BITCOINCLI:-$BINDIR/bitcoin-cli}
+BITCOINCLI=${BITCOINCLI:-$BINDIR/bsha3-cli}
 BITCOINTX=${BITCOINTX:-$BINDIR/bitcoin-tx}
 BITCOINQT=${BITCOINQT:-$BINDIR/qt/bitcoin-qt}
 
@@ -19,7 +19,7 @@ BTCVER=($($BITCOINCLI --version | head -n1 | awk -F'[ -]' '{ print $6, $7 }'))
 
 # Create a footer file with copyright content.
 # This gets autodetected fine for bsha3d if --version-string is not set,
-# but has different outcomes for bitcoin-qt and bitcoin-cli.
+# but has different outcomes for bitcoin-qt and bsha3-cli.
 echo "[COPYRIGHT]" > footer.h2m
 $BITCOIND --version | sed -n '1!p' >> footer.h2m
 

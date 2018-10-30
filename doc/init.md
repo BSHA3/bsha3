@@ -62,7 +62,7 @@ Lock file:           `/var/lock/subsys/bsha3d` (CentOS)
 The configuration file, PID directory (if applicable) and data directory
 should all be owned by the bitcoin user and group.  It is advised for security
 reasons to make the configuration file and data directory only readable by the
-bitcoin user and group.  Access to bitcoin-cli and other bsha3d rpc clients
+bitcoin user and group.  Access to bsha3-cli and other bsha3d rpc clients
 can then be controlled by group membership.
 
 ### macOS

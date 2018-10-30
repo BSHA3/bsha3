@@ -96,8 +96,8 @@ Other commands:
 -------
 
     ./src/bsha3d -daemon # Starts the bitcoin daemon.
-    ./src/bitcoin-cli --help # Outputs a list of command-line options.
-    ./src/bitcoin-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/bsha3-cli --help # Outputs a list of command-line options.
+    ./src/bsha3-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Notes
 -----
