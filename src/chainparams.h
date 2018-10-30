@@ -61,6 +61,7 @@ public:
     const CMessageHeader::MessageStartChars& MessageStart() const { return pchMessageStart; }
     int GetDefaultPort() const { return nDefaultPort; }
 
+    bool MiningRequiresPeers() const { return fMiningRequiresPeers; }
     const CBlock& GenesisBlock() const { return genesis; }
     /** Default value for -checkmempool and -checkblockindex argument */
     bool DefaultConsistencyChecks() const { return fDefaultConsistencyChecks; }
@@ -80,6 +81,17 @@ public:
     const std::vector<SeedSpec6>& FixedSeeds() const { return vFixedSeeds; }
     const CCheckpointData& Checkpoints() const { return checkpointData; }
     const ChainTxData& TxData() const { return chainTxData; }
+    void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
+    
+    void TurnOffSegwit();
+    void TurnOffCSV();
+    void TurnOffBIP34();
+    void TurnOffBIP65();
+    void TurnOffBIP66();
+    bool BIP34();
+    bool BIP65();
+    bool BIP66();
+    bool CSVEnabled() const;
 protected:
     CChainParams() {}
 
@@ -96,6 +108,7 @@ protected:
     bool fDefaultConsistencyChecks;
     bool fRequireStandard;
     bool fMineBlocksOnDemand;
+    bool fMiningRequiresPeers;
     CCheckpointData checkpointData;
     ChainTxData chainTxData;
     bool m_fallback_fee_enabled;
