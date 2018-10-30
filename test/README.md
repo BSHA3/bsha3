@@ -6,7 +6,7 @@ etc.
 This directory contains the following sets of tests:
 
 - [functional](/test/functional) which test the functionality of
-bsha3d and bitcoin-qt by interacting with them through the RPC and P2P
+bsha3d and bsha3-qt by interacting with them through the RPC and P2P
 interfaces.
 - [util](/test/util) which tests the bitcoin utilities, currently only
 bsha3-tx.

@@ -23,7 +23,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the 
 installer (on Windows) or just copy over `/Applications/Bitcoin-Qt` (on Mac)
-or `bsha3d`/`bitcoin-qt` (on Linux).
+or `bsha3d`/`bsha3-qt` (on Linux).
 
 The first time you run version 0.15.0 or higher, your chainstate database will
 be converted to a new format, which will take anywhere from a few minutes to
@@ -214,7 +214,7 @@ Low-level RPC changes
 - #11125 `812c870` Add bsha3-cli -stdin and -stdinrpcpass functional tests (promag)
 - #11077 `1d80d1e` fix timeout issues from TestNode (jnewbery)
 - #11078 `f1ced0d` Make p2p-leaktests.py more robust (jnewbery)
-- #11210 `f3f7891` Stop test_bitcoin-qt touching ~/.bitcoin (MeshCollider)
+- #11210 `f3f7891` Stop test_bsha3-qt touching ~/.bitcoin (MeshCollider)
 - #11234 `f0b6795` Remove redundant testutil.cpp|h files (MeshCollider)
 - #11215 `cef0319` fixups from set_test_params() (jnewbery)
 - #11345 `f9cf7b5` Check connectivity before sending in assumevalid.py (jnewbery)

@@ -17,8 +17,8 @@ maintained by Matt Corallo to automatically keep
 bitcoin up-to-date.  Just type
   sudo apt-add-repository ppa:bitcoin/bitcoin
   sudo apt-get update
-in your terminal, then install the bitcoin-qt package:
-  sudo apt-get install bitcoin-qt
+in your terminal, then install the bsha3-qt package:
+  sudo apt-get install bsha3-qt
 
 
 How to Upgrade
@@ -30,7 +30,7 @@ Code:
 /Applications/Bitcoin-Qt
 (on Mac) or
 Code:
-bsha3d/bitcoin-qt
+bsha3d/bsha3-qt
 (on Linux).
 
 If you were running on Linux with a version that might have been compiled
@@ -119,8 +119,8 @@ Qt GUI
 * Much better translations
 * Override progress bar design on platforms with segmented progress bars to assist with readability
 * Added 'immature balance' display on the overview page
-* (Windows only): enable ASLR and DEP for bitcoin-qt.exe
-* (Windows only): add meta-data to bitcoin-qt.exe (e.g. description)
+* (Windows only): enable ASLR and DEP for bsha3-qt.exe
+* (Windows only): add meta-data to bsha3-qt.exe (e.g. description)
 
 Internal codebase
 
