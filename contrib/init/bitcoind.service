@@ -5,14 +5,14 @@
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/bitcoin/bitcoin.conf
+# /etc/bsha3/bitcoin.conf
 
 [Unit]
 Description=Bitcoin daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/bsha3d -daemon -conf=/etc/bitcoin/bitcoin.conf -pid=/run/bsha3d/bsha3d.pid
+ExecStart=/usr/bin/bsha3d -daemon -conf=/etc/bsha3/bitcoin.conf -pid=/run/bsha3d/bsha3d.pid
 # Creates /run/bsha3d owned by bitcoin
 RuntimeDirectory=bsha3d
 User=bitcoin

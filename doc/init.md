@@ -54,7 +54,7 @@ Paths
 All three configurations assume several paths that might need to be adjusted.
 
 Binary:              `/usr/bin/bsha3d`  
-Configuration file:  `/etc/bitcoin/bitcoin.conf`  
+Configuration file:  `/etc/bsha3/bitcoin.conf`  
 Data directory:      `/var/lib/bsha3d`  
 PID file:            `/var/run/bsha3d/bsha3d.pid` (OpenRC and Upstart) or `/var/lib/bsha3d/bsha3d.pid` (systemd)  
 Lock file:           `/var/lock/subsys/bsha3d` (CentOS)  
