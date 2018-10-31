@@ -81,7 +81,7 @@ src/qt/bsha3-qt.includes
 *.qm
 Makefile
 bsha3-qt
-Bitcoin-Qt.app
+BSHA3-Qt.app
 background.tiff*
 
 # Unit-tests
