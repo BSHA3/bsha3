@@ -502,9 +502,9 @@ CWallet* GetFirstWallet() {
 
 void static BSHA3Miner(const CChainParams& chainparams)
 {
-    LogPrintf("RavenMiner -- started\n");
+    LogPrintf("BSHA3 Miner -- started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    RenameThread("raven-miner");
+    RenameThread("bsha3-miner");
 
     unsigned int nExtraNonce = 0;
 
@@ -512,7 +512,7 @@ void static BSHA3Miner(const CChainParams& chainparams)
     CWallet* pWallet = GetFirstWallet();
 
     if (!EnsureWalletIsAvailable(pWallet, false)) {
-        LogPrintf("RavenMiner -- Wallet not available\n");
+        LogPrintf("BSHA3 Miner -- Wallet not available\n");
     }
 
     if (pWallet == NULL)
@@ -523,7 +523,7 @@ void static BSHA3Miner(const CChainParams& chainparams)
 
     pWallet->GetScriptForMining(coinbaseScript);
 
-    //GetMainSignals().ScriptForMining(coinbaseScript);
+    // GetMainSignals().ScriptForMining(coinbaseScript);
 
     if (!coinbaseScript)
         LogPrintf("coinbaseScript is NULL\n");
@@ -594,7 +594,7 @@ void static BSHA3Miner(const CChainParams& chainparams)
                     {
                         // Found a solution
                         SetThreadPriority(THREAD_PRIORITY_NORMAL);
-                        LogPrintf("RavenMiner:\n  proof-of-work found\n  hash: %s\n  target: %s\n", hash.GetHex(), hashTarget.GetHex());
+                        LogPrintf("BSHA3 Miner:\n  proof-of-work found\n  hash: %s\n  target: %s\n", hash.GetHex(), hashTarget.GetHex());
                         ProcessBlockFound(pblock, chainparams);
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
                         coinbaseScript->KeepScript();
@@ -618,7 +618,7 @@ void static BSHA3Miner(const CChainParams& chainparams)
                 // Check for stop or if block needs to be rebuilt
                 boost::this_thread::interruption_point();
                 // Regtest mode doesn't require peers
-                //if (vNodes.empty() && chainparams.MiningRequiresPeers())
+                // if (vNodes.empty() && chainparams.MiningRequiresPeers())
                 //    break;
                 if (pblock->nNonce >= 0xffff0000)
                     break;
@@ -641,12 +641,12 @@ void static BSHA3Miner(const CChainParams& chainparams)
     }
     catch (const boost::thread_interrupted&)
     {
-        LogPrintf("RavenMiner -- terminated\n");
+        LogPrintf("BSHA3 Miner -- terminated\n");
         throw;
     }
     catch (const std::runtime_error &e)
     {
-        LogPrintf("RavenMiner -- runtime error: %s\n", e.what());
+        LogPrintf("BSHA3 Miner -- runtime error: %s\n", e.what());
         return;
     }
 }
@@ -672,7 +672,7 @@ int GenerateBSHA3s(bool fGenerate, int nThreads, const CChainParams& chainparams
 
     minerThreads = new boost::thread_group();
     
-    //Reset metrics
+    // Reset metrics
     nMiningTimeStart = GetTimeMicros();
     nHashesDone = 0;
     nHashesPerSec = 0;
