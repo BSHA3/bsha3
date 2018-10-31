@@ -1,9 +1,18 @@
-Bitcoin Core integration/staging tree
+BSHA3
 =====================================
 
-[![Build Status](https://travis-ci.org/bitcoin/bitcoin.svg?branch=master)](https://travis-ci.org/bitcoin/bitcoin)
+https://bsha3.com
 
-https://bitcoincore.org
+What is BSHA3?
+---------------
+
+BSHA3 is a new version of Bitcoin. All instances of SHA256, a prominent algorithm throughout Bitcoin, are replaced with SHA3-256.
+
+Its roadmap is to have extreme parity with Bitcoin and Bitcoin Core, with upstream merges accounting for the bulk of its future changes. The issue tracker may be used for discussion and review of upcoming Bitcoin Core pull requests, as well as code issues.
+
+It has an identical issuance schedule to Bitcoin in its present form.
+
+Its genesis block has a timestamp (`nTime`) of `1540053565`.
 
 What is Bitcoin?
 ----------------
@@ -21,11 +30,13 @@ the Bitcoin Core software, see https://bitcoincore.org/en/download/, or read the
 License
 -------
 
-Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+BSHA3 is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
+
+> The following text is directly from Bitcoin Core.
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
 completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
@@ -35,6 +46,8 @@ The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Testing
 -------
+
+> The following text is directly from Bitcoin Core.
 
 Testing and code review is the bottleneck for development; we get more pull
 requests than we can review and test on short notice. Please be patient and help out by testing
@@ -63,6 +76,8 @@ not straightforward.
 
 Translations
 ------------
+
+> The following text is directly from Bitcoin Core.
 
 Changes to translations as well as new translations can be submitted to
 [Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/bitcoin/).

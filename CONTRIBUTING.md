@@ -1,7 +1,7 @@
-Contributing to Bitcoin Core
+Contributing to BSHA3 
 ============================
 
-The Bitcoin Core project operates an open contributor model where anyone is
+The BSHA3 project operates an open contributor model where anyone is
 welcome to contribute towards development in the form of peer review, testing
 and patches. This document explains the practical process and guidelines for
 contributing.
@@ -15,11 +15,13 @@ merging pull requests as well as a "lead maintainer" who is responsible for the
 release cycle, overall merging, moderation and appointment of maintainers.
 
 If you're looking for somewhere to start contributing, check out the
-[good first issue](https://github.com/bitcoin/bitcoin/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+[Bitcoin Core repo's "good first issue"](https://github.com/bitcoin/bitcoin/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 list.
 
 Communication Channels
 ----------------------
+
+> The following text / sections are directly from Bitcoin Core. For questions about contributing, you may simply open a Github Issue.
 
 Most communication about Bitcoin Core development happens on IRC, in the
 #bitcoin-core-dev channel on Freenode. The easiest way to participate on IRC is
@@ -123,6 +125,7 @@ Note: Code review is a burdensome but important part of the development process,
 
 Squashing Commits
 ---------------------------
+
 If your pull request is accepted for merging, you may be asked by a maintainer
 to squash and or [rebase](https://git-scm.com/docs/git-rebase) your commits
 before it will be merged. The basic squashing workflow is shown below.
