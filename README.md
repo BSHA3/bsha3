@@ -33,6 +33,19 @@ License
 BSHA3 is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
+Building
+--------
+
+To build:
+
+```
+./autogen.sh
+./configure --disable-bench
+make
+```
+
+The resulting binaries are `src/bsha3d`, `src/bsha3-cli`, `src/bsha3-tx`, and `src/qt/bsha3-qt`.
+
 Development Process
 -------------------
 
