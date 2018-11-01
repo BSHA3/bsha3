@@ -493,7 +493,7 @@ CWallet* GetFirstWallet() {
         MilliSleep(100);
     }
     if (vpwallets.size() == 0)
-        return(NULL);
+        return nullptr;
     return vpwallets[0].get();
 }
 
@@ -512,8 +512,8 @@ void static BSHA3Miner(const CChainParams& chainparams)
         LogPrintf("BSHA3 Miner -- Wallet not available\n");
     }
 
-    if (pWallet == NULL)
-        LogPrintf("pWallet is NULL\n");
+    if (pWallet == nullptr)
+        LogPrintf("pWallet is null\n");
 
 
     std::shared_ptr<CReserveScript> coinbaseScript;
@@ -523,7 +523,7 @@ void static BSHA3Miner(const CChainParams& chainparams)
     // GetMainSignals().ScriptForMining(coinbaseScript);
 
     if (!coinbaseScript)
-        LogPrintf("coinbaseScript is NULL\n");
+        LogPrintf("coinbaseScript is null\n");
 
     if (coinbaseScript->reserveScript.empty())
         LogPrintf("coinbaseScript is empty\n");
@@ -531,7 +531,7 @@ void static BSHA3Miner(const CChainParams& chainparams)
     try {
         // Throw an error if no script was provided.  This can happen
         // due to some internal error but also if the keypool is empty.
-        // In the latter case, already the pointer is NULL.
+        // In the latter case, already the pointer is null.
         if (!coinbaseScript || coinbaseScript->reserveScript.empty())
         {
             throw std::runtime_error("No coinbase script available (mining requires a wallet)");
@@ -651,17 +651,17 @@ void static BSHA3Miner(const CChainParams& chainparams)
 int GenerateBSHA3s(bool fGenerate, int nThreads, const CChainParams& chainparams)
 {
 
-    static boost::thread_group* minerThreads = NULL;
+    static boost::thread_group* minerThreads = nullptr;
 
     int numCores = GetNumCores();
     if (nThreads < 0)
         nThreads = numCores;
 
-    if (minerThreads != NULL)
+    if (minerThreads != nullptr)
     {
         minerThreads->interrupt_all();
         delete minerThreads;
-        minerThreads = NULL;
+        minerThreads = nullptr;
     }
 
     if (nThreads == 0 || !fGenerate)
@@ -678,5 +678,5 @@ int GenerateBSHA3s(bool fGenerate, int nThreads, const CChainParams& chainparams
         minerThreads->create_thread(boost::bind(&BSHA3Miner, boost::cref(chainparams)));
     }
 
-    return(numCores);
+    return numCores;
 }
