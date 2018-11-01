@@ -36,9 +36,6 @@
 
 #include <wallet/wallet.cpp>
 
-//extern std::vector<CWallet*> vpwallets;
-//extern std::vector<CWallet*> vpwallets;
-
 // Unconfirmed transactions in the memory pool often depend on other
 // transactions in the memory pool. When we select transactions from the
 // pool, we select by highest fee rate of a transaction combined with all
@@ -491,13 +488,13 @@ static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainpar
 }
 
 CWallet* GetFirstWallet() {
-    while(vpwallets.size() == 0){
+    LOCK(cs_wallets);
+    while (vpwallets.size() == 0) {
         MilliSleep(100);
-
     }
     if (vpwallets.size() == 0)
         return(NULL);
-    return(vpwallets[0].get());
+    return vpwallets[0].get();
 }
 
 void static BSHA3Miner(const CChainParams& chainparams)
