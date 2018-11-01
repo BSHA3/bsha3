@@ -1153,6 +1153,7 @@ static UniValue SoftForkDesc(const std::string &name, int version, CBlockIndex* 
 }
 */
 
+/*
 static UniValue BIP9SoftForkDesc(const Consensus::Params& consensusParams, Consensus::DeploymentPos id)
 {
     UniValue rv(UniValue::VOBJ);
@@ -1184,7 +1185,9 @@ static UniValue BIP9SoftForkDesc(const Consensus::Params& consensusParams, Conse
     }
     return rv;
 }
+*/
 
+/*
 static void BIP9SoftForkDescPushBack(UniValue& bip9_softforks, const Consensus::Params& consensusParams, Consensus::DeploymentPos id)
 {
     // Deployments with timeout value of 0 are hidden.
@@ -1193,6 +1196,7 @@ static void BIP9SoftForkDescPushBack(UniValue& bip9_softforks, const Consensus::
     if (consensusParams.vDeployments[id].nTimeout > 0)
         bip9_softforks.pushKV(VersionBitsDeploymentInfo[id].name, BIP9SoftForkDesc(consensusParams, id));
 }
+*/
 
 UniValue getblockchaininfo(const JSONRPCRequest& request)
 {
@@ -1279,8 +1283,8 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
         }
     }
 
-    const Consensus::Params& consensusParams = Params().GetConsensus();
-    CBlockIndex* tip = chainActive.Tip();
+    //const Consensus::Params& consensusParams = Params().GetConsensus();
+    //CBlockIndex* tip = chainActive.Tip();
     UniValue softforks(UniValue::VARR);
     UniValue bip9_softforks(UniValue::VOBJ);
     //softforks.push_back(SoftForkDesc("bip34", 2, tip, consensusParams));
@@ -1291,7 +1295,7 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
         BIP9SoftForkDescPushBack(bip9_softforks, consensusParams, static_cast<Consensus::DeploymentPos>(pos));
     }
     */
-    obj.pushKV("softforks",             softforks);
+    obj.pushKV("softforks", softforks);
     obj.pushKV("bip9_softforks", bip9_softforks);
 
     obj.pushKV("warnings", GetWarnings("statusbar"));
