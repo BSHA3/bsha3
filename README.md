@@ -36,7 +36,7 @@ information or see https://opensource.org/licenses/MIT.
 Building
 --------
 
-To build:
+Run:
 
 ```
 ./autogen.sh
@@ -45,6 +45,20 @@ make
 ```
 
 The resulting binaries are `src/bsha3d`, `src/bsha3-cli`, `src/bsha3-tx`, and `src/qt/bsha3-qt`.
+
+Running
+-------
+
+Run in terminal, with `./src/bsha3d` in one window, and `./src/bsha3-cli mycommand` in another. To stop `bsha3d` cleanly, you should run `./src/bsha3-cli stop`.
+
+Mining
+------
+
+The daemon, `bsha3d`, must first be running.
+
+To start, run command `./src/bsha3-cli setgenerate true <num_cores>`.
+
+To stop, run command `./src/bsha3-cli setgenerate false`.
 
 Development Process
 -------------------
