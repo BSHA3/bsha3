@@ -1016,7 +1016,7 @@ UniValue getgenerate(const JSONRPCRequest& request)
     //mapArgs["-gen"] = (fGenerate ? "1" : "0");
     //mapArgs ["-genproclimit"] = itostr(nGenProcLimit);
     int numCores = GenerateBSHA3s(fGenerate, nGenProcLimit, Params());
-     nGenProcLimit = nGenProcLimit >= 0 ? nGenProcLimit : numCores;
+    nGenProcLimit = nGenProcLimit >= 0 ? nGenProcLimit : numCores;
     std::string msg = std::to_string(nGenProcLimit) + " of " + std::to_string(numCores);
     return msg;
 }
