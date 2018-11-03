@@ -3,6 +3,8 @@ BSHA3
 
 https://bsha3.com
 
+[View Releases](https://github.com/bsha3/bsha3/releases)
+
 What is BSHA3?
 ---------------
 
@@ -36,7 +38,9 @@ information or see https://opensource.org/licenses/MIT.
 Building
 --------
 
-Run:
+Download either the source code, or a [pre-built release](https://github.com/bsha3/releases). 
+
+To build from source, run:
 
 ```
 ./autogen.sh
@@ -44,21 +48,51 @@ Run:
 make
 ```
 
-The resulting binaries are `src/bsha3d`, `src/bsha3-cli`, `src/bsha3-tx`, and `src/qt/bsha3-qt`.
+The resulting binaries will be created in `src/`, with the GUI wallet in subdirectory `src/qt/`.
+
+**Components -**
+
+- `bsha3d` - Daemon (Syncs and validates blocks and transactions)
+- `bsha3-cli` - RPC Client (Runs commands on the daemon) 
+- `bsha3-tx` - Transaction Builder
+- `bsha3-qt` - GUI Wallet (Standalone, can be used for mining and sending)
 
 Running
 -------
 
-Run in terminal, with `./src/bsha3d` in one window, and `./src/bsha3-cli mycommand` in another. To stop `bsha3d` cleanly, you should run `./src/bsha3-cli stop`.
+**GUI -**
+
+To start, double-click the program. To stop, close the program.
+
+**CLI (Command Line Interface) -**
+
+To start, run `./bsha3d` in a terminal window. Then run `./bsha3-cli getblockchaininfo` in another. You should see the block height and other output.
+
+To stop `bsha3d` cleanly, you should run `./bsha3-cli stop`.
 
 Mining
 ------
 
-The daemon, `bsha3d`, must first be running.
+**GUI -**
 
-To start, run command `./src/bsha3-cli setgenerate true <num_cores>`.
+You will need to visit the debug console to use these commands. It is located at `Help -> Debug Window` on the titlebar.
 
-To stop, run command `./src/bsha3-cli setgenerate false`.
+To start, run command - `setgenerate true <num_cpu_cores>`
+
+To stop, run command - `setgenerate false`
+
+**CLI -**
+
+To start, first run - `./bsha3d`
+
+Then, in a separate terminal, run - `./bsha3-cli setgenerate true <num_cpu_cores>`
+
+You are now mining.
+
+To stop mining, run - `./bsha3-cli setgenerate false`
+
+To stop `bsha3d` cleanly, run - `./bsha3-cli stop`.
+
 
 Development Process
 -------------------
