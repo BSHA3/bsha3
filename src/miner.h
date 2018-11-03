@@ -19,6 +19,9 @@ class CBlockIndex;
 class CChainParams;
 class CScript;
 
+// current local hashes/sec
+uint64_t nHashesPerSec = 0;
+
 namespace Consensus { struct Params; };
 
 static const bool DEFAULT_PRINTPRIORITY = false;
