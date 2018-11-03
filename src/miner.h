@@ -20,7 +20,7 @@ class CChainParams;
 class CScript;
 
 // current local hashes/sec
-uint64_t nHashesPerSec = 0;
+extern uint64_t nHashesPerSec;
 
 namespace Consensus { struct Params; };
 
