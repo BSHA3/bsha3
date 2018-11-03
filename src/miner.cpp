@@ -44,7 +44,6 @@
 uint64_t nLastBlockTx = 0;
 uint64_t nLastBlockWeight = 0;
 uint64_t nMiningTimeStart = 0;
-uint64_t nHashesPerSec = 0;
 uint64_t nHashesDone = 0;
 
 int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
