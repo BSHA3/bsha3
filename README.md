@@ -91,8 +91,23 @@ You are now mining.
 
 To stop mining, run - `./bsha3-cli setgenerate false`
 
-To stop `bsha3d` cleanly, run - `./bsha3-cli stop`.
+To stop `bsha3d` cleanly, run - `./bsha3-cli stop`
 
+Wallet Backup
+-------------
+
+Create a wallet backup right away. There are two ways to do this:
+
+- Use `bsha3-cli dumpwallet <output_filename>` to create a txt file containing your `xprv` (master private key) and its addresses. From this `xprv`, you can generate all private keys & addresses that your wallet file will ever contain.
+
+- Copy `$DATADIR/wallets/wallet.dat` to a safe destination.
+
+Your datadir is in the following folder for each operating system:
+
+Windows 10 - `C:\Documents and Settings\<username>\Application Data\BSHA3`
+Windows 7 - `C:\Users\<username>\AppData\Roaming\BSHA3`
+Mac - `~/Library/Application Support/BSHA3`
+Unix - `~/.bsha3`
 
 Development Process
 -------------------
