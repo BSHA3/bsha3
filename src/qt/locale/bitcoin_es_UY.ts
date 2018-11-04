@@ -122,7 +122,7 @@
         <translation>Recibiendo direcciones</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a BSHA3 address</source>
         <translation>Enviar monedas a una dirección Bitcoin</translation>
     </message>
     <message>
