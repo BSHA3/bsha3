@@ -66,11 +66,11 @@
         <translation>受け取りアドレス</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your BSHA3 addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>これらは支払いを送信するためのあなたの Bitcoin アドレスです。コインを送信する前に、常に額と受信アドレスを確認してください。</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your BSHA3 addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>これらは支払いを受け取るためのビットコインアドレスです。トランザクションごとに新しい受け取り用アドレスを作成することが推奨されます。</translation>
     </message>
     <message>
@@ -358,7 +358,7 @@
         <translation>プロキシは &lt;b&gt;有効&lt;/b&gt;です: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a BSHA3 address</source>
         <translation>Bitcoin アドレスにコインを送る</translation>
     </message>
     <message>
@@ -410,11 +410,11 @@
         <translation>あなたのウォレットの秘密鍵を暗号化します</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your BSHA3 addresses to prove you own them</source>
         <translation>あなたが所有していることを証明するために、あなたの Bitcoin アドレスでメッセージに署名してください</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified BSHA3 addresses</source>
         <translation>指定された Bitcoin アドレスで署名されたことを確認するためにメッセージを検証します</translation>
     </message>
     <message>
@@ -764,7 +764,7 @@
         <translation>送信アドレスを編集</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address "%1" is not a valid BSHA3 address.</source>
         <translation>入力されたアドレス "%1" は無効な Bitcoin アドレスです。</translation>
     </message>
     <message>
@@ -1348,7 +1348,7 @@
         <translation>支払いのアドレス「%1」は無効です</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid BSHA3 address or malformed URI parameters.</source>
         <translation>URI を解析できません! これは無効な Bitcoin アドレスあるいは不正な形式の URI パラメーターによって引き起こされる場合があります。</translation>
     </message>
     <message>
@@ -1450,7 +1450,7 @@
         <translation>総額</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <source>Enter a BSHA3 address (e.g. %1)</source>
         <translation>Bitcoinアドレスを入力してください (例 %1)</translation>
     </message>
     <message>
@@ -2331,7 +2331,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation><numerusform>%n ブロック以内に検証が開始されると予想されます。</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
+        <source>Warning: Invalid BSHA3 address</source>
         <translation>警告：無効なBitcoinアドレスです</translation>
     </message>
     <message>
@@ -2374,7 +2374,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>これは通常の支払です。</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
+        <source>The BSHA3 address to send the payment to</source>
         <translation>支払の送金先Bitcoinアドレス</translation>
     </message>
     <message>
@@ -2471,7 +2471,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>あなたの所有しているアドレスによりメッセージや合意書に署名をすることで、それらアドレスに対して送られたビットコインを受け取ることができることを証明できます。フィッシング攻撃により不正にあなたの識別情報を署名させられてしまうことを防ぐために、不明確なものやランダムなものに対して署名しないよう注意してください。あなたが同意した、よく詳細の記された文言にのみ署名するようにしてください。</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
+        <source>The BSHA3 address to sign the message with</source>
         <translation>メッセージを署名するBitcoinアドレス</translation>
     </message>
     <message>
@@ -2503,7 +2503,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>現在の署名をシステムのクリップボードにコピーする</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this BSHA3 address</source>
         <translation>この Bitcoin アドレスを所有していることを証明するためにメッセージに署名</translation>
     </message>
     <message>
@@ -2527,11 +2527,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>受取人のアドレスとメッセージ（改行やスペース、タブなども完全に一致するよう注意してください）および署名を以下に入力し、メッセージの署名を検証してください。中間者攻撃により騙されるのを防ぐため、署名対象のメッセージに書かれていること以上の意味を署名から読み取ろうとしないよう注意してください。これは署名作成者がこのアドレスで受け取ったことを証明するだけであり、トランザクションの送信権限を証明するものではないことに注意してください！</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
+        <source>The BSHA3 address the message was signed with</source>
         <translation>メッセージの署名に使われたBitcoinアドレス</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified BSHA3 address</source>
         <translation>指定された Bitcoin アドレスで署名されたことを保証するメッセージを検証</translation>
     </message>
     <message>

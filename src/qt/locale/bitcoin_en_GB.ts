@@ -66,12 +66,12 @@
         <translation>Receiving addresses</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
+        <source>These are your BSHA3 addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>These are your BSHA3 addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</translation>
+        <source>These are your BSHA3 addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>These are your BSHA3 addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -350,8 +350,8 @@
         <translation>Reindexing blocks on disk...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
-        <translation>Send coins to a Bitcoin address</translation>
+        <source>Send coins to a BSHA3 address</source>
+        <translation>Send coins to a BSHA3 address</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -402,12 +402,12 @@
         <translation>Encrypt the private keys that belong to your wallet</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Sign messages with your Bitcoin addresses to prove you own them</translation>
+        <source>Sign messages with your BSHA3 addresses to prove you own them</source>
+        <translation>Sign messages with your BSHA3 addresses to prove you own them</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Verify messages to ensure they were signed with specified Bitcoin addresses</translation>
+        <source>Verify messages to ensure they were signed with specified BSHA3 addresses</source>
+        <translation>Verify messages to ensure they were signed with specified BSHA3 addresses</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -756,8 +756,8 @@
         <translation>Edit sending address</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>The entered address "%1" is not a valid Bitcoin address.</translation>
+        <source>The entered address "%1" is not a valid BSHA3 address.</source>
+        <translation>The entered address "%1" is not a valid BSHA3 address.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -1316,8 +1316,8 @@
         <translation>Invalid payment address %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
-        <translation>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid BSHA3 address or malformed URI parameters.</source>
+        <translation>URI cannot be parsed! This can be caused by an invalid BSHA3 address or malformed URI parameters.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1418,8 +1418,8 @@
         <translation>Amount</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
-        <translation>Enter a Bitcoin address (e.g. %1)</translation>
+        <source>Enter a BSHA3 address (e.g. %1)</source>
+        <translation>Enter a BSHA3 address (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2251,8 +2251,8 @@
         <translation><numerusform>Estimated to begin confirmation within %n block.</numerusform><numerusform>Estimated to begin confirmation within %n blocks.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
-        <translation>Warning: Invalid Bitcoin address</translation>
+        <source>Warning: Invalid BSHA3 address</source>
+        <translation>Warning: Invalid BSHA3 address</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2294,8 +2294,8 @@
         <translation>This is a normal payment.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to send the payment to</source>
-        <translation>The Bitcoin address to send the payment to</translation>
+        <source>The BSHA3 address to send the payment to</source>
+        <translation>The BSHA3 address to send the payment to</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2391,8 +2391,8 @@
         <translation>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</translation>
     </message>
     <message>
-        <source>The Bitcoin address to sign the message with</source>
-        <translation>The Bitcoin address to sign the message with</translation>
+        <source>The BSHA3 address to sign the message with</source>
+        <translation>The BSHA3 address to sign the message with</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2423,8 +2423,8 @@
         <translation>Copy the current signature to the system clipboard</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
-        <translation>Sign the message to prove you own this Bitcoin address</translation>
+        <source>Sign the message to prove you own this BSHA3 address</source>
+        <translation>Sign the message to prove you own this BSHA3 address</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2447,12 +2447,12 @@
         <translation>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</translation>
     </message>
     <message>
-        <source>The Bitcoin address the message was signed with</source>
-        <translation>The Bitcoin address the message was signed with</translation>
+        <source>The BSHA3 address the message was signed with</source>
+        <translation>The BSHA3 address the message was signed with</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
-        <translation>Verify the message to ensure it was signed with the specified Bitcoin address</translation>
+        <source>Verify the message to ensure it was signed with the specified BSHA3 address</source>
+        <translation>Verify the message to ensure it was signed with the specified BSHA3 address</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
