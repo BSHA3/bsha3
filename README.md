@@ -38,7 +38,7 @@ information or see https://opensource.org/licenses/MIT.
 Building
 --------
 
-Download either the source code, or a [pre-built release](https://github.com/bsha3/releases). 
+Download either the source code, or a [pre-built release](https://github.com/bsha3/bsha3/releases).
 
 To build from source, run:
 
@@ -66,7 +66,7 @@ To start, double-click the program. To stop, close the program.
 
 **CLI (Command Line Interface) -**
 
-To start, run `./bsha3d` in a terminal window. Then run `./bsha3-cli getblockchaininfo` in another. You should see the block height and other output.
+To start, run `./bsha3d` in a terminal window. Then run `./bsha3-cli getblockchaininfo` in another. You should see the block height and other output. Run `./bsha3-cli help` for more commands.
 
 To stop `bsha3d` cleanly, you should run `./bsha3-cli stop`.
 
@@ -104,10 +104,10 @@ Create a wallet backup right away. There are two ways to do this:
 
 Your datadir is in the following folder for each operating system:
 
-Windows 10 - `C:\Documents and Settings\<username>\Application Data\BSHA3`
-Windows 7 - `C:\Users\<username>\AppData\Roaming\BSHA3`
-Mac - `~/Library/Application Support/BSHA3`
-Unix - `~/.bsha3`
+- Windows 10 - `C:\Documents and Settings\<username>\Application Data\BSHA3`
+- Windows 7 - `C:\Users\<username>\AppData\Roaming\BSHA3`
+- Mac - `~/Library/Application Support/BSHA3`
+- Unix - `~/.bsha3`
 
 Development Process
 -------------------
