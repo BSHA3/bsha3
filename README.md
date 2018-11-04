@@ -38,7 +38,7 @@ information or see https://opensource.org/licenses/MIT.
 Building
 --------
 
-Download either the source code, or a [pre-built release](https://github.com/bsha3/releases). 
+Download either the source code, or a [pre-built release](https://github.com/bsha3/bsha3/releases).
 
 To build from source, run:
 
