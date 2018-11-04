@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Bitcoin"
-            VALUE "FileDescription",    "bsha3-tx (CLI Bitcoin transaction editor utility)"
+            VALUE "CompanyName",        "BSHA3"
+            VALUE "FileDescription",    "bsha3-tx (CLI BSHA3 transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "bsha3-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
