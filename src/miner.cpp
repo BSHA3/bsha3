@@ -25,7 +25,6 @@
 #include <util.h>
 #include <utilmoneystr.h>
 #include <validationinterface.h>
-
 #include <wallet/wallet.h>
 
 #include <algorithm>
@@ -33,8 +32,6 @@
 #include <utility>
 
 #include <boost/thread.hpp>
-
-#include <wallet/wallet.cpp>
 
 // Unconfirmed transactions in the memory pool often depend on other
 // transactions in the memory pool. When we select transactions from the
