@@ -8,7 +8,7 @@
 # /etc/bsha3/bitcoin.conf
 
 [Unit]
-Description=Bitcoin daemon
+Description=BSHA3 daemon
 After=network.target
 
 [Service]

@@ -13,8 +13,8 @@
 #BITCOIND_DATADIR="/var/lib/bsha3d"
 
 # User and group to own bsha3d process
-#BITCOIND_USER="bitcoin"
-#BITCOIND_GROUP="bitcoin"
+#BITCOIND_USER="bsha3"
+#BITCOIND_GROUP="bsha3"
 
 # Path to bsha3d executable
 #BITCOIND_BIN="/usr/bin/bsha3d"
