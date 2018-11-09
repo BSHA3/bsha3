@@ -1,6 +1,8 @@
 Release Process
 ====================
 
+> The following text is directly from Bitcoin Core. Over time, as the community grows, this process will be eased in.
+
 Before every release candidate:
 
 * Update translations (ping wumpus on IRC) see [translation_process.md](https://github.com/bitcoin/bitcoin/blob/master/doc/translation_process.md#synchronising-translations).
