@@ -1,13 +1,12 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Bitcoin
 Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
- irc://#bitcoin@freenode.net
-Source: https://github.com/bitcoin/bitcoin
+Source: https://github.com/bsha3/bsha3
 
 Files: *
 Copyright: 2009-2018, Bitcoin Core Developers
 License: Expat
-Comment: The Bitcoin Core Developers encompasses the current developers listed on bitcoin.org,
+Comment: BSHA3 Developers encompasses the current developers listed on bsha3.org,
          as well as the numerous contributors to the project.
 
 Files: debian/*
