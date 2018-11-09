@@ -86,7 +86,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000010f4207fc56b");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
@@ -106,11 +106,8 @@ public:
         genesis = CreateGenesisBlock(1540053565, 10226705, 0x1d00ffff, 4, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        //std::cout << "Genesis Hash:" << consensus.hashGenesisBlock.GetHex() << "\n";
-        //std::cout << "Merkle: " << genesis.hashMerkleRoot.GetHex() << "\n";
-
-        //assert(consensus.hashGenesisBlock == uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        //assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000000090692ea88f3c87dc1cd28e3972c6b86d6f2e7c8fd8d267e88c4d65f1"));
+        assert(genesis.hashMerkleRoot == uint256S("0x6da02f100f366c604834400e249047aa7c0c594c957783be15fb223543aa7861"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -139,15 +136,17 @@ public:
                 { 1, uint256S("0x00000000230768841f81a8b14b3899ce6b38c0e0e9d8f3a60245cf79c8bc756a")},
                 { 175, uint256S("0x000000004571ee39c82eb143f15577808de9fbfd7f103e6f77d27c6855538aca")},
                 { 176, uint256S("0x000000001adcdf818192b26b9ae9a3506e864f6669ed28fa7e509e2258a0b68c")},
-                { 250, uint256S("0x000000003790c7a9797e9c7d4c6791b9b5051c250e6d5e0b7745f483eb65c4a3")}
+                { 250, uint256S("0x000000003790c7a9797e9c7d4c6791b9b5051c250e6d5e0b7745f483eb65c4a3")},
+                { 1000, uint256S("0x0000000052707bd216d8c74f4ad773529d063b2f6bcae6f0f9a6dc120647a330")},
+                { 4000, uint256S("0x000000009697e163b20b9d5675d538f2f046972919f804e5c8130479ef6b19a3")}
             }
         };
 
         chainTxData = ChainTxData {
-            // Data from rpc: getchaintxstats
-            /* nTime    */ 1541008950,
-            /* nTxCount */ 264,
-            /* dTxRate  */ 0.0006197,
+            // Data from rpc: getchaintxstats 4096
+            /* nTime    */ 1541760671,
+            /* nTxCount */ 8532,
+            /* dTxRate  */ 0.00714,
         };
 
         /* disable fallback fee on mainnet */
