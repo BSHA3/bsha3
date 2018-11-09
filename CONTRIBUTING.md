@@ -1,4 +1,4 @@
-Contributing to BSHA3 
+Contributing to BSHA3
 ============================
 
 The BSHA3 project operates an open contributor model where anyone is
