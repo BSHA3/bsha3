@@ -8,11 +8,11 @@ https://bsha3.com
 What is BSHA3?
 ---------------
 
-BSHA3 is a new version of Bitcoin. All instances of SHA256, a prominent algorithm throughout Bitcoin, are replaced with SHA3-256.
+BSHA3 is an experimental blockchain based on Bitcoin. Almost all instances of SHA256, a prominent algorithm throughout Bitcoin, are replaced with SHA3-256.
 
 Its roadmap is to have extreme parity with Bitcoin and Bitcoin Core, with upstream merges accounting for the bulk of its future changes. The issue tracker may be used for discussion and review of upcoming Bitcoin Core pull requests, as well as code issues.
 
-It has an identical issuance schedule to Bitcoin in its present form.
+It has an identical difficulty adjustment and halving functions as Bitcoin in its present form.
 
 Its genesis block has a timestamp (`nTime`) of `1540053565`.
 
