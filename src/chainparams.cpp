@@ -167,7 +167,7 @@ public:
         consensus.nBIP66Enabled = true;
         consensus.nSegwitEnabled = true;
         consensus.nCSVEnabled = true;
-        consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 14 * 24 * 6 * 6; // two weeks // (60)
         consensus.nPowTargetSpacing = 1 * 6; // (10)
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -194,7 +194,7 @@ public:
         nDefaultPort = 18335;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1540053565, 14564263, /*i,*/ 0x1e00ffff, 1, 50 * COIN); // TODO
+        genesis = CreateGenesisBlock(1542337888, 52660, /*i,*/ 0x1f00ffff, 4, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         //assert(consensus.hashGenesisBlock == uint256S("0x000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"));
         //assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
