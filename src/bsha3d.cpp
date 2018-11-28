@@ -31,13 +31,13 @@ const std::function<std::string(const char*)> G_TRANSLATION_FUN = nullptr;
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called BSHA3,
- * which enables instant payments to anyone, anywhere in the world. BSHA3 uses peer-to-peer technology to operate
- * with no central authority: managing transactions and issuing money are carried out collectively by the network.
+ * This is the developer documentation of the reference client for an experimental new blockchain called BSHA3,
+ * which enables instant transactions to anyone, anywhere in the world. BSHA3 uses peer-to-peer technology to operate
+ * with no central authority: managing transactions and creating coins is carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
  *
- * See https://github.com/bitcoin/bitcoin and https://bitcoincore.org/ for further information about the project.
+ * See https://github.com/bsha3/bsha3 and https://bsha3.org/ for further information about the project.
  *
  * \section Navigation
  * Use the buttons <code>Namespaces</code>, <code>Classes</code> or <code>Files</code> at the top of the page to start navigating the code.
